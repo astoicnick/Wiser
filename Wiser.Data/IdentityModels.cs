@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Wiser.Data;
 
-namespace Wiser.MVC.Models
+namespace Wiser.Models
 {
     //Creating new DbContext by using User class  
     public class ApplicationDbContext : IdentityDbContext<User>
@@ -35,12 +35,11 @@ namespace Wiser.MVC.Models
                 .HasRequired(w => w.Author);
 
             modelBuilder.Entity<Favorite>()
-                .HasRequired(c => c.User)
+                .HasRequired(c => c.User);
                 //Ask what this is doing
                 //.WithMany(t => t.FavoriteTable)
                 //What is this doing?
                 //.Map(m => m.MapKey("UserId"))
-                ;
         }
     }
     //Creating the primary key for our user
@@ -54,9 +53,15 @@ namespace Wiser.MVC.Models
     //Creating primary key for user role
     public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
     {
-        public IdentityUserRoleConfiguration()
+        
+    public IdentityUserRoleConfiguration()
         {
             HasKey(iur => iur.UserId);
         }
+    }
+    public class ApplicationRole : IdentityRole
+    {
+        public ApplicationRole() : base() { }
+        public ApplicationRole(string roleName) : base (roleName) { }
     }
 }

@@ -58,8 +58,9 @@
     <Compile Include="Author\AuthorDetailItem.cs" />
     <Compile Include="Author\AuthorScrollItem.cs" />
     <Compile Include="Author\AuthorUpdateItem.cs" />
-    <Compile Include="Collections\Favorites.cs" />
+    <Compile Include="Favorite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\UserDetailItem.cs" />
     <Compile Include="Wisdom\WisdomCreateItem.cs" />
     <Compile Include="Wisdom\WisdomDetailItem.cs" />
     <Compile Include="Wisdom\WisdomScrollItem.cs" />
@@ -69,9 +70,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="User\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Wiser.Data\Wiser.Data.csproj">
       <Project>{6023D0B7-1021-44D8-A7F4-37855B152820}</Project>

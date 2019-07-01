@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wiser.Data;
+using Wiser.Models.Author;
 
 namespace Wiser.Models.Wisdom
 {
@@ -16,11 +17,13 @@ namespace Wiser.Models.Wisdom
         [Display(Name ="User")]
         public string UserName { get; set; }
         [Required]
-        public int AuthorId { get; set; }
-        [Required]
-        [Display(Name ="Author")]
-        //Put in string for author name so I could link Author's id to  his/her name
-        public string AuthorName { get; set; }
+        public AuthorScrollItem Author { get; set; }
+        //[Required]
+        //public int AuthorId { get; set; }
+        //[Required]
+        //[Display(Name ="Author")]
+        ////Put in string for author name so I could link Author's id to  his/her name
+        //public string AuthorName { get; set; }
         [Required]
         public string Content { get; set; }
         [Required]

@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Wiser.Data;
+using Wiser.Models;
 using Wiser.MVC.Models;
 
 namespace Wiser.MVC

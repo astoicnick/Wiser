@@ -5,7 +5,7 @@ namespace Wiser.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Wiser.MVC.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Wiser.Models.ApplicationDbContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace Wiser.Data.Migrations
             ContextKey = "Wiser.MVC.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(Wiser.MVC.Models.ApplicationDbContext context)
+        protected override void Seed(Wiser.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

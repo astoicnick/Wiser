@@ -81,6 +81,14 @@
     <Compile Include="Migrations\201907010736495_wisdomauthorkey.Designer.cs">
       <DependentUpon>201907010736495_wisdomauthorkey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907011513086_admincreated.cs" />
+    <Compile Include="Migrations\201907011513086_admincreated.Designer.cs">
+      <DependentUpon>201907011513086_admincreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907011744418_roleadded.cs" />
+    <Compile Include="Migrations\201907011744418_roleadded.Designer.cs">
+      <DependentUpon>201907011744418_roleadded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
@@ -108,6 +116,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907010736495_wisdomauthorkey.resx">
       <DependentUpon>201907010736495_wisdomauthorkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907011513086_admincreated.resx">
+      <DependentUpon>201907011513086_admincreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907011744418_roleadded.resx">
+      <DependentUpon>201907011744418_roleadded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
