@@ -1,0 +1,16 @@
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\bin\Debug\Wiser.Models.dll
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\bin\Debug\Wiser.Models.pdb
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\obj\Debug\Wiser.Models.csproj.CoreCompileInputs.cache
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\obj\Debug\Wiser.Models.dll
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\obj\Debug\Wiser.Models.pdb
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\bin\Debug\Wiser.Models.dll.config
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\bin\Debug\EntityFramework.dll
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\bin\Debug\EntityFramework.xml
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\obj\Debug\Wiser.Models.csprojAssemblyReference.cache
+C:\Users\Nick\source\repos\Wiser\Wiser.Models\obj\Debug\Wiser.Models.csproj.CopyComplete
