@@ -103,3 +103,6 @@ C:\Users\found\source\repos\wiser\Wiser.Services\obj\Debug\Wiser.Services.csproj
 C:\Users\found\source\repos\wiser\Wiser.Services\obj\Debug\Wiser.Services.csproj.CopyComplete
 C:\Users\found\source\repos\wiser\Wiser.Services\obj\Debug\Wiser.Services.dll
 C:\Users\found\source\repos\wiser\Wiser.Services\obj\Debug\Wiser.Services.pdb
+C:\Users\found\source\repos\wiser\Wiser.Services\bin\Debug\Wiser.Contracts.dll
+C:\Users\found\source\repos\wiser\Wiser.Services\bin\Debug\Wiser.Contracts.pdb
+C:\Users\found\source\repos\wiser\Wiser.Services\bin\Debug\Wiser.Contracts.dll.config

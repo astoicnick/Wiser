@@ -58,11 +58,15 @@
     <Compile Include="Author\AuthorDetailItem.cs" />
     <Compile Include="Author\AuthorScrollItem.cs" />
     <Compile Include="Author\AuthorUpdateItem.cs" />
-    <Compile Include="Favorite.cs" />
+    <Compile Include="Favorite\AddFavoriteItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\UserDetailItem.cs" />
+    <Compile Include="User\UserScrollItem.cs" />
+    <Compile Include="Wisdom\WisdomAttributionItem.cs" />
+    <Compile Include="Wisdom\WisdomContributionItem.cs" />
     <Compile Include="Wisdom\WisdomCreateItem.cs" />
     <Compile Include="Wisdom\WisdomDetailItem.cs" />
+    <Compile Include="Wisdom\WisdomFavoriteItem.cs" />
     <Compile Include="Wisdom\WisdomScrollItem.cs" />
     <Compile Include="Wisdom\WisdomUpdateItem.cs" />
   </ItemGroup>

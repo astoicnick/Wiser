@@ -16,10 +16,13 @@ namespace Wiser.Data
         [Key]
         public int WisdomId { get; set; }
 
-        [Required]
-        public Guid OwnerId { get; set; }
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+        public virtual User User { get; set; }
 
-        public Author Author { get; set; }
+        [ForeignKey("Author")]
+        public int AuthorId { get; set; }
+        public virtual Author Author { get; set; }
 
         //Core properties
         public string Content { get; set; }

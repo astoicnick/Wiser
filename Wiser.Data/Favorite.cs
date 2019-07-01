@@ -12,8 +12,9 @@ namespace Wiser.Data
     {
         [Key]
         public int FavoriteId { get; set; }
-        //Don't even need foreign key.. wow!
-        public User User { get; set; }
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+        public virtual User User { get; set; }
 
         [ForeignKey("Wisdom")]
         public int WisdomId { get; set; }

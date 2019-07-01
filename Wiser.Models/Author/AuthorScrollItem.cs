@@ -13,5 +13,7 @@ namespace Wiser.Models.Author
         public int AuthorId { get; set; }
         [Required]
         public string AuthorName { get; set; }
+        //How many wisdom posts that author has been attributed to (count of attributions)
+        public int WisdomCount { get; set; }
     }
 }

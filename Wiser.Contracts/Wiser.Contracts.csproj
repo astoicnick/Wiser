@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="IUserService.cs" />
     <Compile Include="IWisdomService.cs" />
-    <Compile Include="ICollectionService.cs" />
     <Compile Include="IAuthorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,10 +63,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Author\" />
-    <Folder Include="Collections\" />
-    <Folder Include="User\" />
+    <ProjectReference Include="..\Wiser.Models\Wiser.Models.csproj">
+      <Project>{BA8C25DF-3045-4F76-BE35-8E6B4A236D42}</Project>
+      <Name>Wiser.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

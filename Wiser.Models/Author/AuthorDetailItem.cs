@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wiser.Models.Collections;
 using Wiser.Models.Wisdom;
 
 namespace Wiser.Models.Author
