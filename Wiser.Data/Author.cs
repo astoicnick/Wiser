@@ -21,6 +21,7 @@ namespace Wiser.Data
         public DateTime CreatedAt => DateTime.UtcNow;
         [Required]
         public int? Virtue { get; set; }
+        public int WisdomCount { get; set; }
 
 
     }

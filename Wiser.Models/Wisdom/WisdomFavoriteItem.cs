@@ -8,6 +8,8 @@ namespace Wiser.Models.Wisdom
 {
     public class WisdomFavoriteItem
     {
+        public int FavoriteId { get; set; }
+        public string UserId { get; set; }
         public int AuthorId { get; set; }
         public string AuthorName { get; set; }
         public int WisdomId { get; set; }

@@ -19,6 +19,6 @@ namespace Wiser.Models.Author
         [Required]
         public DateTime CreatedAt { get; set; }
         [Required]
-        public List<WisdomScrollItem> Attributions { get; set; }
+        public List<WisdomAttributionItem> Attributions { get; set; }
     }
 }

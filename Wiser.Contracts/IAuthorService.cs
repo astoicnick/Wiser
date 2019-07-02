@@ -10,7 +10,7 @@ namespace Wiser.Contracts
 {
     public interface IAuthorService
     {
-        bool CreateAuthor(string firstName, string lastName);
+        bool CreateAuthor(AuthorCreateItem authorToCreate);
         AuthorDetailItem RetrieveAuthor(int idToRetrieve);
         bool UpdateAuthor(AuthorUpdateItem authorToUpdate);
         List<AuthorScrollItem> GetAuthors();

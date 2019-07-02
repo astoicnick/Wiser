@@ -11,7 +11,7 @@ namespace Wiser.Models.Wisdom
     public class WisdomUpdateItem
     {
         public int WisdomId { get; set; }
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         [Required]
         public int AuthorId { get; set; }
         [Required]

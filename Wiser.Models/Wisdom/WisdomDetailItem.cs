@@ -12,7 +12,7 @@ namespace Wiser.Models.Wisdom
     public class WisdomDetailItem
     {
         [Required]
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         [Required]
         [Display(Name ="User")]
         public string UserName { get; set; }

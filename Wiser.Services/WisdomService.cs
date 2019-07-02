@@ -13,8 +13,8 @@ namespace Wiser.Services
 {
     public class WisdomService : IWisdomService
     {
-        private readonly Guid _userId;
-        public WisdomService(Guid userId)
+        private readonly string _userId;
+        public WisdomService(string userId)
         {
             _userId = userId;
         }
@@ -37,12 +37,14 @@ namespace Wiser.Services
                     var newAuthor = new Author()
                     {
                         FirstName = wisdomToCreate.AuthorFirstName,
-                        LastName = wisdomToCreate.AuthorLastName
+                        LastName = wisdomToCreate.AuthorLastName,
+                        WisdomCount = 1
                     };
                     ctx.AuthorTable.Add(newAuthor);
                     ctx.SaveChanges();
                 }
                 entity.Author = ctx.AuthorTable.Find(wisdomToCreate.AuthorId);
+                entity.Author.WisdomCount += 1;
                 ctx.WisdomTable.Add(entity);
                 if (wisdomToCreate.AuthorId == null)
                 {
@@ -50,8 +52,6 @@ namespace Wiser.Services
                 }
                 return ctx.SaveChanges() == 1;
             }
-
-
         }
 
         public List<WisdomScrollItem> GetWisdomList()
