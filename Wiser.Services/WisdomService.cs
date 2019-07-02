@@ -58,7 +58,7 @@ namespace Wiser.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = (List<WisdomScrollItem>)
+                var query =
                     ctx
                         .WisdomTable
                         .Select(
@@ -67,16 +67,17 @@ namespace Wiser.Services
                             {
                                 Virtue = e.PostVirtue,
                                 UserId = e.UserId,
-                                UserName = e.User.FullName,
+                                FirstName = e.User.FirstName,
+                                LastName = e.User.LastName,
                                 Content = e.Content,
                                 Source = e.Source,
                                 Author = new AuthorScrollItem()
                                 {
                                     AuthorId = e.AuthorId,
-                                    AuthorName = e.Author.FullName,
+                                    AuthorName = e.User.FirstName+e.User.LastName,
                                     WisdomCount = ctx.WisdomTable.Where(a => a.AuthorId == e.AuthorId).Count()
                                 }
-                            });
+                            }).ToList();
                 return query;
             }
         }
@@ -99,7 +100,8 @@ namespace Wiser.Services
                     .Select(e => new WisdomDetailItem
                     {
                         UserId = e.UserId,
-                        UserName = e.User.FullName,
+                        FirstName = e.User.FirstName,
+                        LastName = e.User.LastName,
                         Author = new AuthorScrollItem
                         {
                             AuthorId = e.AuthorId,
@@ -141,6 +143,7 @@ namespace Wiser.Services
                 wisdomToUpvote.PostVirtue += 1;
                 wisdomToUpvote.Author.Virtue += 1;
                 wisdomToUpvote.User.Virtue += 1;
+
                 int virtuePostUpdate = (int)(wisdomToUpvote.User.Virtue) + (int)(wisdomToUpvote.Author.Virtue) + (int)(wisdomToUpvote.PostVirtue);
                 return virtuePreUpdate != virtuePostUpdate;
             }

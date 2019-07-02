@@ -9,10 +9,11 @@ namespace Wiser.Models.Author
 {
     public class AuthorScrollItem
     {
-        [Required]
+        [Key]
         public int AuthorId { get; set; }
         [Required]
         public string AuthorName { get; set; }
+        [Required]
         //How many wisdom posts that author has been attributed to (count of attributions)
         public int WisdomCount { get; set; }
     }

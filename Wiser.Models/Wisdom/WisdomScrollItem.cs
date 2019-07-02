@@ -10,11 +10,16 @@ namespace Wiser.Models.Wisdom
 {
     public class WisdomScrollItem
     {
+        [Key]
+        public int WisdomId { get; set; }
         [Required]
         public string UserId { get; set; }
         [Required]
-        [Display(Name ="User")]
-        public string UserName { get; set; }
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Display(Name = "User")]
+        public string UserName => $"{FirstName} {LastName}";
         [Required]
         public string Content { get; set; }
         [Required]

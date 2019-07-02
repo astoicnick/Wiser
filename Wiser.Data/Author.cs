@@ -15,8 +15,7 @@ namespace Wiser.Data
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        [Required]
-        public string FullName => $"{FirstName} {LastName}";
+        public string FullName { get; set; }
         [Required]
         public DateTime CreatedAt => DateTime.UtcNow;
         [Required]

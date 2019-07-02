@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wiser.Contracts\Wiser.Contracts.csproj">
-      <Project>{41693D49-9AE3-4C0D-800D-C456E6F28E8A}</Project>
+      <Project>{41693d49-9ae3-4c0d-800d-c456e6f28e8a}</Project>
       <Name>Wiser.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wiser.Data\Wiser.Data.csproj">
@@ -75,10 +75,6 @@
     <ProjectReference Include="..\Wiser.Models\Wiser.Models.csproj">
       <Project>{ba8c25df-3045-4f76-be35-8e6b4a236d42}</Project>
       <Name>Wiser.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Wiser.MVC\Wiser.MVC.csproj">
-      <Project>{b28c9d31-0510-4b98-bb80-8fbd91a157ad}</Project>
-      <Name>Wiser.MVC</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

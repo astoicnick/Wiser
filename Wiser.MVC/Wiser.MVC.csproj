@@ -172,6 +172,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\WisdomController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -282,6 +283,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Wisdom\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -293,9 +295,21 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Wiser.Contracts\Wiser.Contracts.csproj">
+      <Project>{41693D49-9AE3-4C0D-800D-C456E6F28E8A}</Project>
+      <Name>Wiser.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wiser.Data\Wiser.Data.csproj">
       <Project>{6023d0b7-1021-44d8-a7f4-37855b152820}</Project>
       <Name>Wiser.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wiser.Models\Wiser.Models.csproj">
+      <Project>{BA8C25DF-3045-4F76-BE35-8E6B4A236D42}</Project>
+      <Name>Wiser.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wiser.Services\Wiser.Services.csproj">
+      <Project>{ecbd957a-21f7-4a03-872d-56d32fdee5cf}</Project>
+      <Name>Wiser.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

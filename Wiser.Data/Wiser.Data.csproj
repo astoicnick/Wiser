@@ -93,9 +93,29 @@
     <Compile Include="Migrations\201907012255322_wisdomcomplete.Designer.cs">
       <DependentUpon>201907012255322_wisdomcomplete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907021521585_add-migration updatedadmin.cs" />
+    <Compile Include="Migrations\201907021521585_add-migration updatedadmin.Designer.cs">
+      <DependentUpon>201907021521585_add-migration updatedadmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907021523169_rmadminacct.cs" />
+    <Compile Include="Migrations\201907021523169_rmadminacct.Designer.cs">
+      <DependentUpon>201907021523169_rmadminacct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201907021524324_completedservices.cs" />
     <Compile Include="Migrations\201907021524324_completedservices.Designer.cs">
       <DependentUpon>201907021524324_completedservices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907021528046_remove-migrations.cs" />
+    <Compile Include="Migrations\201907021528046_remove-migrations.Designer.cs">
+      <DependentUpon>201907021528046_remove-migrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907021946036_changefullnameauthor.cs" />
+    <Compile Include="Migrations\201907021946036_changefullnameauthor.Designer.cs">
+      <DependentUpon>201907021946036_changefullnameauthor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907021950118_removefullname.cs" />
+    <Compile Include="Migrations\201907021950118_removefullname.Designer.cs">
+      <DependentUpon>201907021950118_removefullname.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,8 +154,23 @@
     <EmbeddedResource Include="Migrations\201907012255322_wisdomcomplete.resx">
       <DependentUpon>201907012255322_wisdomcomplete.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907021521585_add-migration updatedadmin.resx">
+      <DependentUpon>201907021521585_add-migration updatedadmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907021523169_rmadminacct.resx">
+      <DependentUpon>201907021523169_rmadminacct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907021524324_completedservices.resx">
       <DependentUpon>201907021524324_completedservices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907021528046_remove-migrations.resx">
+      <DependentUpon>201907021528046_remove-migrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907021946036_changefullnameauthor.resx">
+      <DependentUpon>201907021946036_changefullnameauthor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907021950118_removefullname.resx">
+      <DependentUpon>201907021950118_removefullname.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

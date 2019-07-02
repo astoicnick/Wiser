@@ -25,10 +25,14 @@ namespace Wiser.Data
         public virtual Author Author { get; set; }
 
         //Core properties
+        [Required]
         public string Content { get; set; }
+        [Required]
         public Genre WisdomGenre { get; set; }
+        [Required]
         //How many upvotes
         public int? PostVirtue { get; set; }
+        [Required]
         public string Source { get; set; }
         public DateTime CreatedAt { get; set; }
     }

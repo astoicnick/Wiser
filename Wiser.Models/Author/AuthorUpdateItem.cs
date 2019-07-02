@@ -9,11 +9,13 @@ namespace Wiser.Models.Author
 {
     public class AuthorUpdateItem
     {
+        [Required]
         public int AuthorId { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
+        [Required]
         public DateTime CreatedAt { get; set; }
     }
 }

@@ -51,3 +51,9 @@ C:\Users\Nick\source\repos\Wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.admi
 C:\Users\Nick\source\repos\Wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.roleadded.resources
 C:\Users\Nick\source\repos\Wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.wisdomcomplete.resources
 C:\Users\Nick\source\repos\Wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.completedservices.resources
+C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.completedservices.resources
+C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.addmigrationupdatedadmin.resources
+C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.rmadminacct.resources
+C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.removemigrations.resources
+C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.changefullnameauthor.resources
+C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.removefullname.resources
