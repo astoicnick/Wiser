@@ -40,16 +40,16 @@ namespace Wiser.Services
                         LastName = wisdomToCreate.AuthorLastName,
                         WisdomCount = 1
                     };
+                    newAuthor.FullName = $"{newAuthor.FirstName} {newAuthor.LastName}";
                     ctx.AuthorTable.Add(newAuthor);
+                    entity.Author = newAuthor;
                     ctx.SaveChanges();
-                }
-                entity.Author = ctx.AuthorTable.Find(wisdomToCreate.AuthorId);
-                entity.Author.WisdomCount += 1;
-                ctx.WisdomTable.Add(entity);
-                if (wisdomToCreate.AuthorId == null)
-                {
+                    entity.Author.WisdomCount += 1;
+                    ctx.WisdomTable.Add(entity);
                     return ctx.SaveChanges() == 2;
                 }
+                entity.Author.WisdomCount += 1;
+                ctx.WisdomTable.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -74,7 +74,7 @@ namespace Wiser.Services
                                 Author = new AuthorScrollItem()
                                 {
                                     AuthorId = e.AuthorId,
-                                    AuthorName = e.User.FirstName+e.User.LastName,
+                                    AuthorName = e.User.FirstName + e.User.LastName,
                                     WisdomCount = ctx.WisdomTable.Where(a => a.AuthorId == e.AuthorId).Count()
                                 }
                             }).ToList();
@@ -95,7 +95,7 @@ namespace Wiser.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = (WisdomDetailItem) ctx.WisdomTable
+                var query = (WisdomDetailItem)ctx.WisdomTable
                     .Where(w => w.WisdomId == wisdomId)
                     .Select(e => new WisdomDetailItem
                     {
@@ -112,7 +112,8 @@ namespace Wiser.Services
                         Source = e.Source,
                         WisdomGenre = e.WisdomGenre,
                         CreatedAt = e.CreatedAt,
-                        Virtue = e.PostVirtue
+                        Virtue = e.PostVirtue,
+                        WisdomId = e.WisdomId
                     });
                 return query;
             }
@@ -147,6 +148,19 @@ namespace Wiser.Services
                 int virtuePostUpdate = (int)(wisdomToUpvote.User.Virtue) + (int)(wisdomToUpvote.Author.Virtue) + (int)(wisdomToUpvote.PostVirtue);
                 return virtuePreUpdate != virtuePostUpdate;
             }
+        }
+        public WisdomUpdateItem DetailToUpdateItem(WisdomDetailItem detailItem)
+        {
+            return new WisdomUpdateItem()
+            {
+                AuthorId = detailItem.Author.AuthorId,
+                AuthorName = detailItem.Author.AuthorName,
+                Content = detailItem.Content,
+                Source = detailItem.Source,
+                UserId = detailItem.UserId,
+                WisdomGenre = detailItem.WisdomGenre,
+                WisdomId = detailItem.WisdomId
+            };
         }
     }
 }

@@ -38,5 +38,6 @@ namespace Wiser.Models.Wisdom
         public DateTime CreatedAt { get; set; }
         [Required]
         public int? Virtue { get; set; }
+        public int WisdomId { get; set; }
     }
 }

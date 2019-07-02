@@ -117,6 +117,14 @@
     <Compile Include="Migrations\201907021950118_removefullname.Designer.cs">
       <DependentUpon>201907021950118_removefullname.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907022112379_removedsomerequiredauthor.cs" />
+    <Compile Include="Migrations\201907022112379_removedsomerequiredauthor.Designer.cs">
+      <DependentUpon>201907022112379_removedsomerequiredauthor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907022122051_removerequiredwisdom.cs" />
+    <Compile Include="Migrations\201907022122051_removerequiredwisdom.Designer.cs">
+      <DependentUpon>201907022122051_removerequiredwisdom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
@@ -171,6 +179,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907021950118_removefullname.resx">
       <DependentUpon>201907021950118_removefullname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907022112379_removedsomerequiredauthor.resx">
+      <DependentUpon>201907022112379_removedsomerequiredauthor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907022122051_removerequiredwisdom.resx">
+      <DependentUpon>201907022122051_removerequiredwisdom.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

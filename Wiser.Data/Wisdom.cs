@@ -27,9 +27,9 @@ namespace Wiser.Data
         //Core properties
         [Required]
         public string Content { get; set; }
-        [Required]
+        //[Required]
         public Genre WisdomGenre { get; set; }
-        [Required]
+        //[Required]
         //How many upvotes
         public int? PostVirtue { get; set; }
         [Required]

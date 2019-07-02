@@ -16,9 +16,7 @@ namespace Wiser.Data
         [Required]
         public string LastName { get; set; }
         public string FullName { get; set; }
-        [Required]
         public DateTime CreatedAt => DateTime.UtcNow;
-        [Required]
         public int? Virtue { get; set; }
         public int WisdomCount { get; set; }
 

@@ -11,10 +11,11 @@ namespace Wiser.Models.Wisdom
 {
     public class WisdomCreateItem
     {
+        [Display(Name = "Choose existing Author")]
         public int? AuthorId { get; set; }
-        [Display(Name = "First Name")]
+        [Display(Name = "Author First Name")]
         public string AuthorFirstName { get; set; }
-        [Display(Name = "Last Name")]
+        [Display(Name = "Author Last Name")]
         public string AuthorLastName { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter valid content for this wisdom.")]
         [MinLength(10, ErrorMessage = "Must be at least 10 characters")]
