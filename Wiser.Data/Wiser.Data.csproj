@@ -93,6 +93,10 @@
     <Compile Include="Migrations\201907012255322_wisdomcomplete.Designer.cs">
       <DependentUpon>201907012255322_wisdomcomplete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907021524324_completedservices.cs" />
+    <Compile Include="Migrations\201907021524324_completedservices.Designer.cs">
+      <DependentUpon>201907021524324_completedservices.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
@@ -129,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907012255322_wisdomcomplete.resx">
       <DependentUpon>201907012255322_wisdomcomplete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907021524324_completedservices.resx">
+      <DependentUpon>201907021524324_completedservices.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
