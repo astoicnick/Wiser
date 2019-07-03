@@ -29,7 +29,6 @@ namespace Wiser.Services
                     WisdomGenre = wisdomToCreate.WisdomGenre,
                     Source = wisdomToCreate.Source,
                     CreatedAt = DateTime.Now,
-                    AuthorId = (int)wisdomToCreate.AuthorId
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -51,6 +50,8 @@ namespace Wiser.Services
                     return ctx.SaveChanges() == 2;
                 }
                 else {
+                    entity.AuthorId = wisdomToCreate.AuthorId.Value;
+                    entity.Author = ctx.AuthorTable.Find(entity.AuthorId);
                     entity.Author.WisdomCount += 1;
                     entity.WisdomId = ctx.WisdomTable.Count() + 1;
                     ctx.WisdomTable.Add(entity);
@@ -70,6 +71,7 @@ namespace Wiser.Services
                         e =>
                             new WisdomScrollItem
                             {
+                                WisdomId = e.WisdomId,
                                 Virtue = e.PostVirtue,
                                 UserId = e.UserId,
                                 FirstName = e.User.FirstName,

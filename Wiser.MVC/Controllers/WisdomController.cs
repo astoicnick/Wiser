@@ -71,6 +71,9 @@ namespace Wiser.MVC.Controllers
         }
         // Update confirmed
         //POST: Wisdom/Update/{id}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Edit")]
         public ActionResult Edit(WisdomDetailItem wisdomToUpdate)
         {
             if (!ModelState.IsValid) return View(wisdomToUpdate);

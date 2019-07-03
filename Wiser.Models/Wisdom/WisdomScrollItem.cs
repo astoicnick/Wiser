@@ -10,7 +10,7 @@ namespace Wiser.Models.Wisdom
 {
     public class WisdomScrollItem
     {
-        
+        [Required]
         public int WisdomId { get; set; }
         [Required]
         public string UserId { get; set; }
