@@ -65,21 +65,28 @@ namespace Wiser.MVC.Controllers
 
         //Update general
         //GET: Wisdom/Update/{id}
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return DetailNullChecker(id);
+            _wisdomService = new WisdomService(User.Identity.GetUserId());
+            var wisdomToCheck = _wisdomService.DetailToUpdateItem(_wisdomService.RetrieveWisdomById(id.Value));
+            if (wisdomToCheck == null)
+            {
+                return HttpNotFound();
+            }
+            
+            return View(wisdomToCheck);
         }
         // Update confirmed
         //POST: Wisdom/Update/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Edit")]
-        public ActionResult Edit(WisdomDetailItem wisdomToUpdate)
+        public ActionResult Edit(WisdomUpdateItem wisdomToUpdate)
         {
             if (!ModelState.IsValid) return View(wisdomToUpdate);
 
             _wisdomService = new WisdomService(User.Identity.GetUserId());
-            if (_wisdomService.UpdateWisdom(_wisdomService.DetailToUpdateItem(wisdomToUpdate)))
+            if (_wisdomService.UpdateWisdom(wisdomToUpdate))
             {
                 TempData["UpdateResult"] = "Wisdom Updated Successfully!";
                 return RedirectToAction("Index");
@@ -89,9 +96,9 @@ namespace Wiser.MVC.Controllers
 
         //Delete general
         //GET: Wisdom/Delete/{id}
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return DetailNullChecker(id);
+            return DetailNullChecker(id.Value);
         }
         //Delete confirmed
         [HttpPost]
