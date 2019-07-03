@@ -16,6 +16,8 @@ namespace Wiser.Models.Author
         [Required]
         public string LastName { get; set; }
         [Required]
+        public string FullName { get; set; }
+        [Required]
         public DateTime CreatedAt { get; set; }
     }
 }

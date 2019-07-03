@@ -116,11 +116,6 @@ namespace Wiser.MVC.Controllers
         }
 
 
-
-
-
-
-
         private ActionResult DetailNullChecker(int id)
         {
             _wisdomService = new WisdomService(User.Identity.GetUserId());

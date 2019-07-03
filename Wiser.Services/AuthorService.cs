@@ -17,10 +17,10 @@ namespace Wiser.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.AuthorTable.Add(new Author() {
+                var entity = ctx.AuthorTable.Add(new Author()
+                {
                     FirstName = authorToCreate.FirstName,
-                    LastName = authorToCreate.LastName,
-                   
+                    LastName = authorToCreate.LastName
                 });
                 ctx.AuthorTable.Add(entity);
                 return ctx.SaveChanges() == 1;
@@ -35,7 +35,7 @@ namespace Wiser.Services
                     .Select(a => new AuthorScrollItem()
                     {
                         AuthorId = a.AuthorId,
-                        AuthorName = a.FullName,
+                        AuthorName = a.FirstName+""+a.LastName,
                         WisdomCount = a.WisdomCount
                     })
                     .ToList();
@@ -51,6 +51,7 @@ namespace Wiser.Services
                     .Single(author => author.AuthorId == idToRetrieve);
                 var authorToReturn = new AuthorDetailItem()
                 {
+                    AuthorId = query.AuthorId,
                     FirstName = query.FirstName,
                     LastName = query.LastName,
                     Virtue = query.Virtue,
@@ -69,6 +70,7 @@ namespace Wiser.Services
                     .Single(author => author.AuthorId == authorToUpdate.AuthorId);
                 query.FirstName = authorToUpdate.FirstName;
                 query.LastName = authorToUpdate.LastName;
+                query.FullName = authorToUpdate.FullName;
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -76,9 +78,20 @@ namespace Wiser.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var authortoDeleteAuthorItem = ctx.AuthorTable.Find(authorToDelete.AuthorId);
                 ctx.AuthorTable.Remove(ctx.AuthorTable.Find(authorToDelete.AuthorId));
                 return ctx.SaveChanges() == 1;
             }
+        }
+        public AuthorUpdateItem DetailToUpdate(AuthorDetailItem detail)
+        {
+            return new AuthorUpdateItem()
+            {
+                AuthorId = detail.AuthorId,
+                CreatedAt = detail.CreatedAt,
+                FirstName = detail.FirstName,
+                LastName = detail.LastName
+            };
         }
         public List<WisdomAttributionItem> Attributions(int authorId)
         {
@@ -92,7 +105,7 @@ namespace Wiser.Services
                         CreatedAt = w.CreatedAt,
                         Content = w.Content,
                         Source = w.Source
-                    });
+                    }).ToList();
                 return query;
             }
         }

@@ -10,6 +10,7 @@ namespace Wiser.Models.Author
 {
     public class AuthorDetailItem
     {
+        public int AuthorId { get; set; }
         [Required]
         public int? Virtue { get; set; }
         [Required(AllowEmptyStrings =false)]
