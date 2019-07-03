@@ -286,6 +286,8 @@
     <Content Include="Views\Wisdom\Index.cshtml" />
     <Content Include="Views\Wisdom\Create.cshtml" />
     <Content Include="Views\Wisdom\Details.cshtml" />
+    <Content Include="Views\Wisdom\Edit.cshtml" />
+    <Content Include="Views\Wisdom\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

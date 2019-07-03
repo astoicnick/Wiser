@@ -13,7 +13,7 @@ using Wiser.Services;
 
 namespace Wiser.MVC.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     public class WisdomController : Controller
     {
         private WisdomService _wisdomService;
@@ -82,6 +82,27 @@ namespace Wiser.MVC.Controllers
                 return RedirectToAction("Index");
             }
             return View(wisdomToUpdate);
+        }
+
+        //Delete general
+        //GET: Wisdom/Delete/{id}
+        public ActionResult Delete(int id)
+        {
+            return DetailNullChecker(id);
+        }
+        //Delete confirmed
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public ActionResult Delete(WisdomDetailItem wisdomToConvert)
+        {
+            _wisdomService = new WisdomService(User.Identity.GetUserId());
+            if (_wisdomService.RemoveWisdom(_wisdomService.DetailToUpdateItem(wisdomToConvert)))
+            {
+                TempData["RemoveResult"] = "Wisdom Removed Successfully!";
+                return RedirectToAction("Index");
+            }
+            return View(wisdomToConvert);
         }
 
 
