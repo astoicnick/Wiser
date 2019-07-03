@@ -8,6 +8,7 @@ using Wiser.Services;
 
 namespace Wiser.MVC.Controllers
 {
+    [Authorize]
     public class AuthorController : Controller
     {
         private AuthorService _authorService;
@@ -15,6 +16,8 @@ namespace Wiser.MVC.Controllers
         //GET: Author/Create
         public ActionResult Create(int? id)
         {
+            _authorService = new AuthorService();
+            ViewData["AuthorId"] = new SelectList(_authorService.GetAuthors(), "AuthorId", "AuthorName");
             return View();
         }
         //Create confirmed
@@ -48,9 +51,12 @@ namespace Wiser.MVC.Controllers
 
         //Edit general
         //GET: Author/Edit/{id}
+        [Authorize(Roles ="Admin")]
         public ActionResult Edit(int? id)
         {
             _authorService = new AuthorService();
+
+            ViewData["AuthorId"] = new SelectList(_authorService.GetAuthors(),"AuthorId","AuthorName");
             if (_authorService.RetrieveAuthor(id.Value) == null)
             {
                 return HttpNotFound();
@@ -60,13 +66,13 @@ namespace Wiser.MVC.Controllers
         //Edit confirmed
         //POST: Author/Edit/{id}
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         [ActionName("Edit")]
+        //IF user is admin show buttons
         public ActionResult Edit(AuthorUpdateItem authorToUpdate)
         {
-            //if (!ModelState.IsValid) return View(authorToUpdate);
-            
-            _authorService = new AuthorService();
+            _authorService = new AuthorService(); ViewData["AuthorId"] = new SelectList(_authorService.GetAuthors(), "AuthorId", "AuthorName");
             if (_authorService.UpdateAuthor(authorToUpdate))
             {
                 TempData["UpdateResult"] = "Author Updated Successfully";
@@ -77,6 +83,7 @@ namespace Wiser.MVC.Controllers
 
         //Delete general
         //GET: Author/Delete/{id}
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             _authorService = new AuthorService();
@@ -91,6 +98,7 @@ namespace Wiser.MVC.Controllers
         //Delete confirm
         //POST: Author/Delete/{id}
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
         public ActionResult Delete(AuthorUpdateItem authorToDelete)
@@ -114,6 +122,5 @@ namespace Wiser.MVC.Controllers
             AuthorDetailItem modelDetailed = _authorService.RetrieveAuthor(id.Value);
             return View(modelDetailed);
         }
-
     }
 }

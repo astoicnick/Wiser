@@ -25,7 +25,7 @@ namespace Wiser.Models.Wisdom
         [Required]
         public string Source { get; set; }
         [Required]
-        public AuthorScrollItem Author { get; set; }
+        public AuthorScrollItem ScrollAuthor { get; set; }
         public int? Virtue { get; set; }
     }
 }

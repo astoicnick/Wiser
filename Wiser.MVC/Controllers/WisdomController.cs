@@ -13,16 +13,19 @@ using Wiser.Services;
 
 namespace Wiser.MVC.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize]
     public class WisdomController : Controller
     {
         private WisdomService _wisdomService;
+        private AuthorService _authorService;
         private string _userId;
 
         //Create general
         //GET: Wisdom/Create
         public ActionResult Create()
         {
+            _authorService = new AuthorService();
+            ViewData["AuthorId"] = new SelectList(_authorService.GetAuthors(), "AuthorId", "AuthorName");
             return View();
         }
         //Create confirmed
@@ -32,7 +35,8 @@ namespace Wiser.MVC.Controllers
         [ActionName("Create")]
         public ActionResult Create(WisdomCreateItem wisdomToCreate)
         {
-           
+            _authorService = new AuthorService();
+            ViewData["AuthorId"] = new SelectList(_authorService.GetAuthors(), "AuthorId", "AuthorName");
             if (!ModelState.IsValid) return View(wisdomToCreate);
 
             _wisdomService = new WisdomService(User.Identity.GetUserId());
@@ -67,13 +71,17 @@ namespace Wiser.MVC.Controllers
         //GET: Wisdom/Update/{id}
         public ActionResult Edit(int? id)
         {
+            _authorService = new AuthorService();
+            ViewData["AuthorId"] = new SelectList(_authorService.GetAuthors(), "AuthorId", "AuthorName");
             _wisdomService = new WisdomService(User.Identity.GetUserId());
             var wisdomToCheck = _wisdomService.DetailToUpdateItem(_wisdomService.RetrieveWisdomById(id.Value));
-            if (wisdomToCheck == null)
+            if (id != null)
             {
-                return HttpNotFound();
+                if (wisdomToCheck == null)
+                {
+                    return HttpNotFound();
+                }
             }
-            
             return View(wisdomToCheck);
         }
         // Update confirmed

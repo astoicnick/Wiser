@@ -20,15 +20,14 @@ namespace Wiser.Services
         }
         public bool CreateWisdom(WisdomCreateItem wisdomToCreate)
         {
-
             var entity =
                 new Wisdom()
                 {
-                    UserId = _userId,
+                    UserId = this._userId,
                     Content = wisdomToCreate.Content,
                     WisdomGenre = wisdomToCreate.WisdomGenre,
                     Source = wisdomToCreate.Source,
-                    CreatedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -46,6 +45,10 @@ namespace Wiser.Services
                     ctx.SaveChanges();
                     entity.Author.WisdomCount += 1;
                     entity.WisdomId = ctx.WisdomTable.Count() + 1;
+                    if ((entity.User = ctx.Users.Find(entity.UserId)) == null)
+                    {
+                        return false;
+                    }
                     ctx.WisdomTable.Add(entity);
                     return ctx.SaveChanges() == 2;
                 }
@@ -54,8 +57,13 @@ namespace Wiser.Services
                     entity.Author = ctx.AuthorTable.Find(entity.AuthorId);
                     entity.Author.WisdomCount += 1;
                     entity.WisdomId = ctx.WisdomTable.Count() + 1;
+                    if ((entity.User = ctx.Users.Find(entity.UserId)) == null)
+                    {
+                        return false;
+                    }
                     ctx.WisdomTable.Add(entity);
-                    return ctx.SaveChanges() == 1;
+                    var changes = ctx.SaveChanges();
+                    return changes == 2;
                 }
             }
         }
@@ -78,10 +86,10 @@ namespace Wiser.Services
                                 LastName = e.User.LastName,
                                 Content = e.Content,
                                 Source = e.Source,
-                                Author = new AuthorScrollItem()
+                                ScrollAuthor = new AuthorScrollItem()
                                 {
                                     AuthorId = e.AuthorId,
-                                    AuthorName = e.User.FirstName + e.User.LastName,
+                                    AuthorName = e.User.FirstName +" "+ e.User.LastName,
                                     WisdomCount = ctx.WisdomTable.Where(a => a.AuthorId == e.AuthorId).Count()
                                 }
                             }).ToList();
@@ -91,11 +99,16 @@ namespace Wiser.Services
 
         public bool RemoveWisdom(WisdomUpdateItem wisdomToRemove)
         {
-            using (var ctx = new ApplicationDbContext())
+            if (_userId == wisdomToRemove.UserId)
             {
-                ctx.WisdomTable.Remove(ctx.WisdomTable.Find(wisdomToRemove.WisdomId));
-                return ctx.SaveChanges() == 1;
+
+                using (var ctx = new ApplicationDbContext())
+                {
+                    ctx.WisdomTable.Remove(ctx.WisdomTable.Find(wisdomToRemove.WisdomId));
+                    return ctx.SaveChanges() == 1;
+                }
             }
+            else return false;
         }
 
         public WisdomDetailItem RetrieveWisdomById(int wisdomId)
@@ -128,18 +141,22 @@ namespace Wiser.Services
 
         public bool UpdateWisdom(WisdomUpdateItem wisdomToUpdate)
         {
-            using (var ctx = new ApplicationDbContext())
+            if (_userId == wisdomToUpdate.UserId)
             {
-                var toUpdate =
-                    ctx
-                    .WisdomTable
-                    .Single(e => e.WisdomId == wisdomToUpdate.WisdomId && e.UserId == wisdomToUpdate.UserId);
-                toUpdate.AuthorId = wisdomToUpdate.AuthorId;
-                toUpdate.Content = wisdomToUpdate.Content;
-                toUpdate.Source = wisdomToUpdate.Source;
-                toUpdate.WisdomGenre = wisdomToUpdate.WisdomGenre;
-                return ctx.SaveChanges() == 1;
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var toUpdate =
+                        ctx
+                        .WisdomTable
+                        .Single(e => e.WisdomId == wisdomToUpdate.WisdomId && e.UserId == wisdomToUpdate.UserId);
+                    toUpdate.AuthorId = wisdomToUpdate.AuthorId;
+                    toUpdate.Content = wisdomToUpdate.Content;
+                    toUpdate.Source = wisdomToUpdate.Source;
+                    toUpdate.WisdomGenre = wisdomToUpdate.WisdomGenre;
+                    return ctx.SaveChanges() == 1;
+                }
             }
+            return false;
         }
 
         public bool Upvote(int wisdomId)
@@ -151,6 +168,7 @@ namespace Wiser.Services
                 wisdomToUpvote.PostVirtue += 1;
                 wisdomToUpvote.Author.Virtue += 1;
                 wisdomToUpvote.User.Virtue += 1;
+                ctx.Users.Find(_userId).VirtueToGiveToday -= 1;
 
                 int virtuePostUpdate = (int)(wisdomToUpvote.User.Virtue) + (int)(wisdomToUpvote.Author.Virtue) + (int)(wisdomToUpvote.PostVirtue);
                 return virtuePreUpdate != virtuePostUpdate;

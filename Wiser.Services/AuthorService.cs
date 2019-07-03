@@ -35,7 +35,7 @@ namespace Wiser.Services
                     .Select(a => new AuthorScrollItem()
                     {
                         AuthorId = a.AuthorId,
-                        AuthorName = a.FirstName+""+a.LastName,
+                        AuthorName = a.FirstName+" "+a.LastName,
                         WisdomCount = a.WisdomCount
                     })
                     .ToList();

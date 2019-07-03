@@ -59,3 +59,6 @@ C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.cha
 C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.removefullname.resources
 C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.removedsomerequiredauthor.resources
 C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.removerequiredwisdom.resources
+C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.changedwisdomFKforuser.resources
+C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.changedwisdomuseridname.resources
+C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.requirefkinwisdom.resources

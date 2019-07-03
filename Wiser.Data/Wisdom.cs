@@ -15,11 +15,10 @@ namespace Wiser.Data
         //Keys and Ids
         [Key]
         public int WisdomId { get; set; }
-
         [ForeignKey("User")]
         public string UserId { get; set; }
         public virtual User User { get; set; }
-
+        [Required]
         [ForeignKey("Author")]
         public int AuthorId { get; set; }
         public virtual Author Author { get; set; }

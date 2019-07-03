@@ -125,6 +125,18 @@
     <Compile Include="Migrations\201907022122051_removerequiredwisdom.Designer.cs">
       <DependentUpon>201907022122051_removerequiredwisdom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907031512282_changedwisdomFKforuser.cs" />
+    <Compile Include="Migrations\201907031512282_changedwisdomFKforuser.Designer.cs">
+      <DependentUpon>201907031512282_changedwisdomFKforuser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907031541580_changedwisdomuseridname.cs" />
+    <Compile Include="Migrations\201907031541580_changedwisdomuseridname.Designer.cs">
+      <DependentUpon>201907031541580_changedwisdomuseridname.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907031546596_requirefkinwisdom.cs" />
+    <Compile Include="Migrations\201907031546596_requirefkinwisdom.Designer.cs">
+      <DependentUpon>201907031546596_requirefkinwisdom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
@@ -185,6 +197,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907022122051_removerequiredwisdom.resx">
       <DependentUpon>201907022122051_removerequiredwisdom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907031512282_changedwisdomFKforuser.resx">
+      <DependentUpon>201907031512282_changedwisdomFKforuser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907031541580_changedwisdomuseridname.resx">
+      <DependentUpon>201907031541580_changedwisdomuseridname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907031546596_requirefkinwisdom.resx">
+      <DependentUpon>201907031546596_requirefkinwisdom.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

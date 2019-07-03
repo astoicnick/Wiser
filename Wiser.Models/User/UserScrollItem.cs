@@ -10,7 +10,7 @@ namespace Wiser.Models.User
     public class UserScrollItem
     {
         [Required]
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         [Required]
         public string Name { get; set; }
     }

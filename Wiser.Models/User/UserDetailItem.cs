@@ -10,6 +10,7 @@ namespace Wiser.Models.User
 {
     public class UserDetailItem
     {
+        public string UserId { get; set; }
         //Supposed to be either "user" or "admin"
         [Required]
         public string Role { get; set; }

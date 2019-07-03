@@ -134,7 +134,6 @@ namespace Wiser.MVC.Controllers
                     return View(model);
             }
         }
-
         //
         // GET: /Account/Register
         [AllowAnonymous]
@@ -142,7 +141,6 @@ namespace Wiser.MVC.Controllers
         {
             return View();
         }
-
         //
         // POST: /Account/Register
         [HttpPost]
@@ -152,12 +150,12 @@ namespace Wiser.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     var currentUser = UserManager.FindByEmail(user.Email);
-                    var roleResult = UserManager.AddToRole(currentUser.Id, "Admin");
+                    var roleResult = UserManager.AddToRole(currentUser.Id, "User");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
