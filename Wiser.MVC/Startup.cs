@@ -37,6 +37,8 @@ namespace Wiser.MVC
                 var user = new User();
                 user.Email = "admin@admin.com";
                 user.UserName = "admin@admin.com";
+                user.FirstName = "Nicholas";
+                user.LastName = "Perry";
                 string userPWD = "Password13@";
                 var chkUser = userManager.Create(user, userPWD);
 

@@ -54,7 +54,7 @@ namespace Wiser.Services
                 return query;
             }
         }
-        public UserDetailItem DetailedUser(int id)
+        public UserDetailItem DetailedUser(string id)
         {
             using (var ctx = new ApplicationDbContext())
             {

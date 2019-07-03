@@ -25,14 +25,14 @@ namespace Wiser.MVC.Controllers
         }
         //Read Details
         //GET: User/{id}
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             return DetailNullChecker(id);
         }
         //Update general
         //GET: User/Edit/{id}
         [Authorize(Roles="Admin")]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             return DetailNullChecker(id);
         }
@@ -56,7 +56,7 @@ namespace Wiser.MVC.Controllers
         //Delete general
         //GET: User/Delete/{id}
         [Authorize(Roles ="Admin")]
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             return DetailNullChecker(id);
         }
@@ -78,14 +78,14 @@ namespace Wiser.MVC.Controllers
             return View(userToDelete);
         }
 
-        private ActionResult DetailNullChecker(int? id)
+        private ActionResult DetailNullChecker(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             _userService = new UserService(User.Identity.GetUserId());
-            var userToCheck = _userService.DetailedUser(id.Value);
+            var userToCheck = _userService.DetailedUser(id);
             if (userToCheck == null)
             {
                 return HttpNotFound();
