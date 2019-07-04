@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Wiser.Data;
 using Wiser.Models.User;
 using Wiser.Services;
 
@@ -78,6 +80,34 @@ namespace Wiser.MVC.Controllers
             return View(userToDelete);
         }
 
+        //Change role general
+        //GET: User/Changerole/{id}
+        [HttpGet]
+        public ActionResult Changerole(string id)
+        {
+            
+            if (id =="")
+            {
+                return HttpNotFound();
+            }
+            return DetailNullChecker(id);
+        }
+        //Change role confirmed
+        //POST: User/Changerole/{id}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Admin")]
+        [ActionName("Changerole")]
+        public ActionResult Changerole(UserDetailItem detail)
+        {
+            _userService = new UserService(User.Identity.GetUserId());
+            if (_userService.ChangeRole(detail.UserId))
+            {
+                TempData["ChangeroleResult"] = "Role changed successfully";
+                return RedirectToAction("Index");
+            }
+            return View(_userService.DetailedUser(detail.UserId));
+        }
         private ActionResult DetailNullChecker(string id)
         {
             if (id == null)

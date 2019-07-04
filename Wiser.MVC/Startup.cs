@@ -28,7 +28,6 @@ namespace Wiser.MVC
             if (!roleManager.RoleExists("User"))
             {
                 roleManager.Create(new IdentityRole("User"));
-
             }
             if (userManager.FindByEmail("admin@admin.com") == null)
             {

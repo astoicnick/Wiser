@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -145,6 +147,25 @@ namespace Wiser.Services
                     }).ToList();
                 return listToReturn;
             };
+        }
+
+        public bool ChangeRole(string id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var userManager = new UserManager<User>(new UserStore<User>(ctx));
+                if (userManager.IsInRole(id,"User"))
+                {
+                    userManager.RemoveFromRole(id,"User");
+                    userManager.AddToRole(id, "Admin");
+                }
+                if (userManager.IsInRole(id, "Admin"))
+                {
+                    userManager.RemoveFromRole(id, "Admin");
+                    userManager.AddToRole(id, "User");
+                }
+                return false;
+            }
         }
     }
 }
