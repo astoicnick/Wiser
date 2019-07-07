@@ -295,10 +295,10 @@
     <Content Include="Views\Author\Delete.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\Changerole.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Wisdom\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

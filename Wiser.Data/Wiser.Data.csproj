@@ -133,9 +133,9 @@
     <Compile Include="Migrations\201907031541580_changedwisdomuseridname.Designer.cs">
       <DependentUpon>201907031541580_changedwisdomuseridname.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907031546596_requirefkinwisdom.cs" />
-    <Compile Include="Migrations\201907031546596_requirefkinwisdom.Designer.cs">
-      <DependentUpon>201907031546596_requirefkinwisdom.cs</DependentUpon>
+    <Compile Include="Migrations\201907062315105_nomorerequiredlastnameauthor.cs" />
+    <Compile Include="Migrations\201907062315105_nomorerequiredlastnameauthor.Designer.cs">
+      <DependentUpon>201907062315105_nomorerequiredlastnameauthor.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -204,8 +204,8 @@
     <EmbeddedResource Include="Migrations\201907031541580_changedwisdomuseridname.resx">
       <DependentUpon>201907031541580_changedwisdomuseridname.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907031546596_requirefkinwisdom.resx">
-      <DependentUpon>201907031546596_requirefkinwisdom.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907062315105_nomorerequiredlastnameauthor.resx">
+      <DependentUpon>201907062315105_nomorerequiredlastnameauthor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

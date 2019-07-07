@@ -16,6 +16,7 @@ namespace Wiser.Contractst
         List<WisdomContributionItem> GetContributions();
         bool RemoveUser(string id);
         List<UserScrollItem> GetUsers();
-        bool ChangeRole(string id);
+        bool EditUser(UserEditItem userToEdit);
+        UserEditItem GetEditItem(string userId);
     }
 }

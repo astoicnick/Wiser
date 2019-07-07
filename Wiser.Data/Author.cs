@@ -13,7 +13,6 @@ namespace Wiser.Data
         public int AuthorId { get; set; }
         [Required]
         public string FirstName { get; set; }
-        [Required]
         public string LastName { get; set; }
         public string FullName { get; set; }
         public DateTime CreatedAt => DateTime.UtcNow;

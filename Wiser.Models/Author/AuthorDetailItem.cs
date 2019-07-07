@@ -15,7 +15,6 @@ namespace Wiser.Models.Author
         public int? Virtue { get; set; }
         [Required(AllowEmptyStrings =false)]
         public string FirstName { get; set; }
-        [Required(AllowEmptyStrings = false)]
         public string LastName { get; set; }
         [Required]
         public DateTime CreatedAt { get; set; }

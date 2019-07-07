@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,8 @@ namespace Wiser.Services
                     {
                         FirstName = wisdomToCreate.AuthorFirstName,
                         LastName = wisdomToCreate.AuthorLastName,
-                        WisdomCount = 1
+                        WisdomCount = 1,
+                        Virtue = 0
                     };
                     newAuthor.FullName = $"{newAuthor.FirstName} {newAuthor.LastName}";
                     ctx.AuthorTable.Add(newAuthor);
@@ -104,6 +106,9 @@ namespace Wiser.Services
 
                 using (var ctx = new ApplicationDbContext())
                 {
+                    var wisdom = ctx.WisdomTable.Find(wisdomToRemove.WisdomId);
+                    wisdom.User.Virtue -= 1;
+                    wisdom.Author.Virtue -= 1;
                     ctx.WisdomTable.Remove(ctx.WisdomTable.Find(wisdomToRemove.WisdomId));
                     return ctx.SaveChanges() == 1;
                 }
@@ -149,11 +154,13 @@ namespace Wiser.Services
                         ctx
                         .WisdomTable
                         .Single(e => e.WisdomId == wisdomToUpdate.WisdomId && e.UserId == wisdomToUpdate.UserId);
-                    toUpdate.AuthorId = wisdomToUpdate.AuthorId;
-                    toUpdate.Content = wisdomToUpdate.Content;
-                    toUpdate.Source = wisdomToUpdate.Source;
-                    toUpdate.WisdomGenre = wisdomToUpdate.WisdomGenre;
-                    return ctx.SaveChanges() == 1;
+                    toUpdate.Author.WisdomCount -= 1;
+                    ctx.SaveChanges();
+                    ctx.Entry(toUpdate).CurrentValues.SetValues(wisdomToUpdate);
+                    toUpdate.Author.WisdomCount += 1;
+                    ctx.SaveChanges();
+                    var saveCount = ctx.SaveChanges();
+                    return ctx.SaveChanges() == saveCount;
                 }
             }
             return false;

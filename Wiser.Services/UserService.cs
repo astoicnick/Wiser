@@ -149,22 +149,34 @@ namespace Wiser.Services
             };
         }
 
-        public bool ChangeRole(string id)
+        public bool EditUser(UserEditItem userToEdit)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var userManager = new UserManager<User>(new UserStore<User>(ctx));
-                if (userManager.IsInRole(id,"User"))
+                var toChange = ctx.Users.Find(userToEdit.UserId);
+                toChange.Email = userToEdit.Email;
+                toChange.FirstName = userToEdit.FirstName;
+                toChange.LastName = userToEdit.LastName;
+                toChange.PhoneNumber = userToEdit.PhoneNumber;
+                toChange.UserName = userToEdit.UserName;
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        public UserEditItem GetEditItem(string userId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var user = ctx.Users.Find(userId);
+
+                return new UserEditItem()
                 {
-                    userManager.RemoveFromRole(id,"User");
-                    userManager.AddToRole(id, "Admin");
-                }
-                if (userManager.IsInRole(id, "Admin"))
-                {
-                    userManager.RemoveFromRole(id, "Admin");
-                    userManager.AddToRole(id, "User");
-                }
-                return false;
+                    UserId = user.Id,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    PhoneNumber = user.PhoneNumber,
+                    UserName = user.UserName
+                };
             }
         }
     }

@@ -91,7 +91,8 @@ namespace Wiser.MVC.Controllers
         [ActionName("Edit")]
         public ActionResult Edit(WisdomUpdateItem wisdomToUpdate)
         {
-            if (!ModelState.IsValid) return View(wisdomToUpdate);
+            _authorService = new AuthorService();
+            ViewData["AuthorId"] = new SelectList(_authorService.GetAuthors(), "AuthorId", "AuthorName");
 
             _wisdomService = new WisdomService(User.Identity.GetUserId());
             if (_wisdomService.UpdateWisdom(wisdomToUpdate))
@@ -106,7 +107,17 @@ namespace Wiser.MVC.Controllers
         //GET: Wisdom/Delete/{id}
         public ActionResult Delete(int? id)
         {
-            return DetailNullChecker(id.Value);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            _wisdomService = new WisdomService(User.Identity.GetUserId());
+            var wisdomToCheck = _wisdomService.RetrieveWisdomById(id.Value);
+            if (wisdomToCheck == null)
+            {
+                return HttpNotFound();
+            }
+            return View(wisdomToCheck);
         }
         //Delete confirmed
         [HttpPost]
@@ -115,7 +126,8 @@ namespace Wiser.MVC.Controllers
         public ActionResult Delete(WisdomDetailItem wisdomToConvert)
         {
             _wisdomService = new WisdomService(User.Identity.GetUserId());
-            if (_wisdomService.RemoveWisdom(_wisdomService.DetailToUpdateItem(wisdomToConvert)))
+            var wisdomtoRemove = _wisdomService.DetailToUpdateItem(wisdomToConvert);
+            if (_wisdomService.RemoveWisdom(wisdomtoRemove))
             {
                 TempData["RemoveResult"] = "Wisdom Removed Successfully!";
                 return RedirectToAction("Index");

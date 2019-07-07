@@ -17,13 +17,30 @@ namespace Wiser.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.AuthorTable.Add(new Author()
+                if (authorToCreate.LastName == null)
                 {
-                    FirstName = authorToCreate.FirstName,
-                    LastName = authorToCreate.LastName
-                });
-                ctx.AuthorTable.Add(entity);
-                return ctx.SaveChanges() == 1;
+                    var entity = new Author()
+                    {
+                        FirstName = authorToCreate.FirstName,
+                        FullName = authorToCreate.FirstName
+                    };
+                    ctx.AuthorTable.Add(entity);
+                    var saveChanges = ctx.SaveChanges();
+                    return ctx.SaveChanges() == 1;
+                }
+                else
+                {
+                    var entity = new Author()
+                    {
+                        FirstName = authorToCreate.FirstName,
+                        LastName = authorToCreate.LastName,
+                        FullName = authorToCreate.FirstName + " " + authorToCreate.LastName,
+                        Virtue = 0,
+                        WisdomCount = 0
+                    };
+                    ctx.AuthorTable.Add(entity);
+                    return ctx.SaveChanges() == 1;
+                }
             }
         }
         public List<AuthorScrollItem> GetAuthors()

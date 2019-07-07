@@ -33,10 +33,19 @@ namespace Wiser.MVC.Controllers
         }
         //Update general
         //GET: User/Edit/{id}
-        [Authorize(Roles="Admin")]
         public ActionResult Edit(string id)
         {
-            return DetailNullChecker(id);
+            if (id != User.Identity.GetUserId())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            _userService = new UserService(User.Identity.GetUserId());
+            var user = _userService.GetEditItem(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
         }
         //Update confirmed
         //POST: User/Edit/{id}
@@ -44,12 +53,12 @@ namespace Wiser.MVC.Controllers
         [Authorize(Roles ="Admin")]
         [ValidateAntiForgeryToken]
         [ActionName("Edit")]
-        public ActionResult Edit(UserDetailItem userToEdit)
+        public ActionResult Edit(UserEditItem userToEdit)
         {
             _userService = new UserService(User.Identity.GetUserId());
-            if (_userService.RemoveUser(userToEdit.UserId))
+            if (_userService.EditUser(userToEdit))
             {
-                TempData["UpdateResult"] = "User Removed Successfully";
+                TempData["UpdateResult"] = "User Updated Successfully";
                 return RedirectToAction("Index");
             }
             return View(userToEdit);
@@ -78,35 +87,6 @@ namespace Wiser.MVC.Controllers
                 return RedirectToAction("Index");
             }
             return View(userToDelete);
-        }
-
-        //Change role general
-        //GET: User/Changerole/{id}
-        [HttpGet]
-        public ActionResult Changerole(string id)
-        {
-            
-            if (id =="")
-            {
-                return HttpNotFound();
-            }
-            return DetailNullChecker(id);
-        }
-        //Change role confirmed
-        //POST: User/Changerole/{id}
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles ="Admin")]
-        [ActionName("Changerole")]
-        public ActionResult Changerole(UserDetailItem detail)
-        {
-            _userService = new UserService(User.Identity.GetUserId());
-            if (_userService.ChangeRole(detail.UserId))
-            {
-                TempData["ChangeroleResult"] = "Role changed successfully";
-                return RedirectToAction("Index");
-            }
-            return View(_userService.DetailedUser(detail.UserId));
         }
         private ActionResult DetailNullChecker(string id)
         {
