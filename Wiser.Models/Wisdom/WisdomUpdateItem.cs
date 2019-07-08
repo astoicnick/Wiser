@@ -24,5 +24,6 @@ namespace Wiser.Models.Wisdom
         [Required]
         [Display(Name = "Genre")]
         public Genre WisdomGenre { get; set; }
+        public bool IsUpvoted { get; set; }
     }
 }

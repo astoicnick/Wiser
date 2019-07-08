@@ -183,5 +183,32 @@ namespace Wiser.Services
                 };
             }
         }
+        public bool Upvote(int wisdomId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                //null obj
+                var userCheck = ctx.UpvotedTable.Single(u => u.WisdomId == wisdomId && u.UserId == _userId);
+                if (userCheck != null)
+                {
+                    return false;
+                }
+                var wisdomToUpvote = ctx.WisdomTable.Single(w => w.WisdomId == wisdomId);
+                int virtuePreUpdate = (int)(wisdomToUpvote.User.Virtue) + (int)(wisdomToUpvote.Author.Virtue) + (int)(wisdomToUpvote.PostVirtue);
+                wisdomToUpvote.PostVirtue += 1;
+                wisdomToUpvote.Author.Virtue += 1;
+                wisdomToUpvote.User.Virtue += 1;
+                ctx.UpvotedTable.Add(new Upvoted()
+                {
+                    UserId = _userId,
+                    WisdomId = wisdomId
+                });
+                ctx.SaveChanges();
+                ctx.Users.Find(_userId).VirtueToGiveToday -= 1;
+
+                int virtuePostUpdate = (int)(wisdomToUpvote.User.Virtue) + (int)(wisdomToUpvote.Author.Virtue) + (int)(wisdomToUpvote.PostVirtue);
+                return virtuePreUpdate != virtuePostUpdate;
+            }
+        }
     }
 }

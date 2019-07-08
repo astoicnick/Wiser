@@ -88,6 +88,7 @@ namespace Wiser.Services
                                 LastName = e.User.LastName,
                                 Content = e.Content,
                                 Source = e.Source,
+                                IsUpvoted = e.IsUpvoted,
                                 ScrollAuthor = new AuthorScrollItem()
                                 {
                                     AuthorId = e.Author.AuthorId,
@@ -111,7 +112,9 @@ namespace Wiser.Services
                     wisdom.User.Virtue -= wisdom.PostVirtue;
                     wisdom.Author.WisdomCount -= 1;
                     ctx.WisdomTable.Remove(ctx.WisdomTable.Find(wisdomToRemove.WisdomId));
-                    return ctx.SaveChanges() == 1;
+                    ctx.SaveChanges();
+                    var saveCount = ctx.SaveChanges();
+                    return ctx.SaveChanges() == saveCount;
                 }
             }
             else return false;
@@ -165,22 +168,6 @@ namespace Wiser.Services
                 }
             }
             return false;
-        }
-
-        public bool Upvote(int wisdomId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var wisdomToUpvote = ctx.WisdomTable.Single(w => w.WisdomId == wisdomId);
-                int virtuePreUpdate = (int)(wisdomToUpvote.User.Virtue) + (int)(wisdomToUpvote.Author.Virtue) + (int)(wisdomToUpvote.PostVirtue);
-                wisdomToUpvote.PostVirtue += 1;
-                wisdomToUpvote.Author.Virtue += 1;
-                wisdomToUpvote.User.Virtue += 1;
-                ctx.Users.Find(_userId).VirtueToGiveToday -= 1;
-
-                int virtuePostUpdate = (int)(wisdomToUpvote.User.Virtue) + (int)(wisdomToUpvote.Author.Virtue) + (int)(wisdomToUpvote.PostVirtue);
-                return virtuePreUpdate != virtuePostUpdate;
-            }
         }
         public WisdomUpdateItem DetailToUpdateItem(WisdomDetailItem detailItem)
         {

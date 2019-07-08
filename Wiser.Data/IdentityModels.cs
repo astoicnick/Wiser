@@ -23,6 +23,7 @@ namespace Wiser.Models
         public DbSet<Wisdom> WisdomTable { get; set; }
         public DbSet<Author> AuthorTable { get; set; }
         public DbSet<Favorite> FavoriteTable { get; set; }
+        public DbSet<Upvoted> UpvotedTable { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

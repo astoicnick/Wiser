@@ -55,6 +55,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Author.cs" />
+    <Compile Include="Migrations\201907081938510_addedupvotedtable.cs" />
+    <Compile Include="Migrations\201907081938510_addedupvotedtable.Designer.cs">
+      <DependentUpon>201907081938510_addedupvotedtable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907082002221_testing=0syntax.cs" />
+    <Compile Include="Migrations\201907082002221_testing=0syntax.Designer.cs">
+      <DependentUpon>201907082002221_testing=0syntax.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Upvoted.cs" />
     <Compile Include="Favorite.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\201907010528458_InitialCreate.cs" />
@@ -227,6 +236,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907081537553_isupvoted.resx">
       <DependentUpon>201907081537553_isupvoted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907081938510_addedupvotedtable.resx">
+      <DependentUpon>201907081938510_addedupvotedtable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907082002221_testing=0syntax.resx">
+      <DependentUpon>201907082002221_testing=0syntax.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -223,3 +223,9 @@ C:\Users\found\source\repos\wiser\Wiser.MVC\bin\Wiser.Models.dll.config
 C:\Users\found\source\repos\wiser\Wiser.MVC\bin\Wiser.Services.dll
 C:\Users\found\source\repos\wiser\Wiser.MVC\bin\Wiser.Services.pdb
 C:\Users\found\source\repos\wiser\Wiser.MVC\bin\Wiser.Services.dll.config
+C:\Users\found\source\repos\wiser\Wiser.MVC\bin\System.Net.Http.Formatting.dll
+C:\Users\found\source\repos\wiser\Wiser.MVC\bin\System.Web.Http.dll
+C:\Users\found\source\repos\wiser\Wiser.MVC\bin\System.Web.Http.WebHost.dll
+C:\Users\found\source\repos\wiser\Wiser.MVC\bin\System.Net.Http.Formatting.xml
+C:\Users\found\source\repos\wiser\Wiser.MVC\bin\System.Web.Http.xml
+C:\Users\found\source\repos\wiser\Wiser.MVC\bin\System.Web.Http.WebHost.xml

@@ -10,6 +10,7 @@ namespace Wiser.Contractst
 {
     public interface IUserService
     {
+        bool Upvote(int wisdomId);
         bool AddFavorite(WisdomFavoriteItem wisdomToFavorite);
         bool RemoveFavorite(WisdomFavoriteItem wisdomToUnfavorite);
         List<WisdomFavoriteItem> GetFavorites();
