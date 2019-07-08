@@ -71,17 +71,15 @@ namespace Wiser.MVC.Controllers
         //GET: Wisdom/Update/{id}
         public ActionResult Edit(int? id)
         {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             _authorService = new AuthorService();
             ViewData["AuthorId"] = new SelectList(_authorService.GetAuthors(), "AuthorId", "AuthorName");
             _wisdomService = new WisdomService(User.Identity.GetUserId());
             var wisdomToCheck = _wisdomService.DetailToUpdateItem(_wisdomService.RetrieveWisdomById(id.Value));
-            if (id != null)
-            {
                 if (wisdomToCheck == null)
                 {
                     return HttpNotFound();
                 }
-            }
             return View(wisdomToCheck);
         }
         // Update confirmed
@@ -117,25 +115,22 @@ namespace Wiser.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(wisdomToCheck);
+            return View(_wisdomService.DetailToUpdateItem(wisdomToCheck));
         }
         //Delete confirmed
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
-        public ActionResult Delete(WisdomDetailItem wisdomToConvert)
+        public ActionResult Delete(WisdomUpdateItem wisdomToRemove)
         {
             _wisdomService = new WisdomService(User.Identity.GetUserId());
-            var wisdomtoRemove = _wisdomService.DetailToUpdateItem(wisdomToConvert);
-            if (_wisdomService.RemoveWisdom(wisdomtoRemove))
+            if (_wisdomService.RemoveWisdom(wisdomToRemove))
             {
                 TempData["RemoveResult"] = "Wisdom Removed Successfully!";
                 return RedirectToAction("Index");
             }
-            return View(wisdomToConvert);
+            return View(wisdomToRemove);
         }
-
-
         private ActionResult DetailNullChecker(int id)
         {
             _wisdomService = new WisdomService(User.Identity.GetUserId());
