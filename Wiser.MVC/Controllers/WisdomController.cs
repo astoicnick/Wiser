@@ -115,7 +115,8 @@ namespace Wiser.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(_wisdomService.DetailToUpdateItem(wisdomToCheck));
+            var wisdomToDisplay = _wisdomService.DetailToUpdateItem(wisdomToCheck);
+            return View(wisdomToDisplay);
         }
         //Delete confirmed
         [HttpPost]

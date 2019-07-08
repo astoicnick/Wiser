@@ -12,8 +12,8 @@ namespace Wiser.Data
 {
     public class User : IdentityUser
     {
-        public int? Virtue { get; set; }
-        public int? VirtueToGiveToday { get; set; }
+        public int Virtue { get; set; }
+        public int VirtueToGiveToday { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FullName { get; set; }

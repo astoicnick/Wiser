@@ -11,7 +11,7 @@
     <h4>WisdomUpdateItem</h4>
     <hr />
     <dl class="dl-horizontal">
-            @Html.HiddenFor(model => model.WisdomId)
+        @Html.HiddenFor(model => model.WisdomId)
 
         <dt>
             @Html.DisplayNameFor(model => model.UserId)
@@ -55,7 +55,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm("Delete", "Wisdom", Model))
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
@@ -64,3 +65,13 @@
         </div>
     }
 </div>
+@*new Wiser.Models.Wisdom.WisdomUpdateItem()
+    {
+        AuthorId = Model.AuthorId,
+        AuthorName = Model.AuthorName,
+        Content = Model.Content,
+        Source = Model.Source,
+        UserId = Model.UserId,
+        WisdomGenre = Model.WisdomGenre,
+        WisdomId = Model.WisdomId
+    }*@

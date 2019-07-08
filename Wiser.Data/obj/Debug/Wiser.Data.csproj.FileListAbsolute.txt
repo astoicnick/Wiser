@@ -62,3 +62,5 @@ C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.rem
 C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.changedwisdomFKforuser.resources
 C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.changedwisdomuseridname.resources
 C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.nomorerequiredlastnameauthor.resources
+C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.setinitialpropertiesforvirtue.resources
+C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.reinit.resources

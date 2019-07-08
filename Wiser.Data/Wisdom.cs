@@ -29,7 +29,7 @@ namespace Wiser.Data
         public Genre WisdomGenre { get; set; }
         //[Required]
         //How many upvotes
-        public int? PostVirtue { get; set; }
+        public int PostVirtue { get; set; } = 0;
         [Required]
         public string Source { get; set; }
         public DateTime CreatedAt { get; set; }

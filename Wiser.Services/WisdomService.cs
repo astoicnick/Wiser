@@ -107,8 +107,8 @@ namespace Wiser.Services
                 using (var ctx = new ApplicationDbContext())
                 {
                     var wisdom = ctx.WisdomTable.Find(wisdomToRemove.WisdomId);
-                    wisdom.User.Virtue -= 1;
-                    wisdom.Author.Virtue -= 1;
+                    wisdom.User.Virtue -= wisdom.PostVirtue;
+                    wisdom.Author.WisdomCount -= 1;
                     ctx.WisdomTable.Remove(ctx.WisdomTable.Find(wisdomToRemove.WisdomId));
                     return ctx.SaveChanges() == 1;
                 }

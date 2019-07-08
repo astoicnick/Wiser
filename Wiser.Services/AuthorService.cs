@@ -24,9 +24,12 @@ namespace Wiser.Services
                         FirstName = authorToCreate.FirstName,
                         FullName = authorToCreate.FirstName
                     };
-                    ctx.AuthorTable.Add(entity);
-                    var saveChanges = ctx.SaveChanges();
-                    return ctx.SaveChanges() == 1;
+                    if (entity.FullName != null)
+                    {
+                        ctx.AuthorTable.Add(entity);
+                        return ctx.SaveChanges() == 1;
+                    }
+                    return false;
                 }
                 else
                 {
