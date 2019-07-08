@@ -11,6 +11,8 @@ namespace Wiser.Models.Wisdom
 {
     public class WisdomDetailItem
     {
+        [UIHint("Upvoted")]
+        public bool IsUpvoted { get; set; }
         [Required]
         public string UserId { get; set; }
         [Required]

@@ -142,5 +142,6 @@ namespace Wiser.MVC.Controllers
             WisdomDetailItem modelDetailed = _wisdomService.RetrieveWisdomById(id);
             return View(modelDetailed);
         }
+        
     }
 }

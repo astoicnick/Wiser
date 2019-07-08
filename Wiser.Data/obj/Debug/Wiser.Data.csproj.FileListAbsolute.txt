@@ -64,3 +64,4 @@ C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.cha
 C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.nomorerequiredlastnameauthor.resources
 C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.setinitialpropertiesforvirtue.resources
 C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.reinit.resources
+C:\Users\found\source\repos\wiser\Wiser.Data\obj\Debug\Wiser.Data.Migrations.isupvoted.resources

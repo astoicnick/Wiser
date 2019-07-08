@@ -124,7 +124,8 @@ namespace Wiser.Services
                         WisdomId = w.WisdomId,
                         CreatedAt = w.CreatedAt,
                         Content = w.Content,
-                        Source = w.Source
+                        Source = w.Source,
+                        IsUpvoted = w.IsUpvoted
                     }).ToList();
                 return query;
             }

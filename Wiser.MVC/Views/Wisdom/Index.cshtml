@@ -35,6 +35,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Virtue)
         </th>
+        <th>
+            @Html.DisplayNameFor(model=> model.ScrollAuthor.AuthorName)
+        </th>
         <th></th>
     </tr>
 
@@ -63,6 +66,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Virtue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScrollAuthor)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.WisdomId }) |

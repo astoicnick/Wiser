@@ -50,18 +50,24 @@ namespace Wiser.MVC.Controllers
         //Update confirmed
         //POST: User/Edit/{id}
         [HttpPost]
-        [Authorize(Roles ="Admin")]
         [ValidateAntiForgeryToken]
         [ActionName("Edit")]
         public ActionResult Edit(UserEditItem userToEdit)
         {
-            _userService = new UserService(User.Identity.GetUserId());
-            if (_userService.EditUser(userToEdit))
+            if (userToEdit.UserId == User.Identity.GetUserId())
             {
-                TempData["UpdateResult"] = "User Updated Successfully";
-                return RedirectToAction("Index");
+
+
+                _userService = new UserService(User.Identity.GetUserId());
+                if (_userService.EditUser(userToEdit))
+                {
+                    TempData["UpdateResult"] = "User Updated Successfully";
+                    return RedirectToAction("Index");
+                }
+                return View(userToEdit);
             }
-            return View(userToEdit);
+            TempData["Unauthorized"] = "You are not authorized to use this function";
+            return RedirectToAction("Index");
         }
 
         //Delete general
@@ -69,24 +75,33 @@ namespace Wiser.MVC.Controllers
         [Authorize(Roles ="Admin")]
         public ActionResult Delete(string id)
         {
-            return DetailNullChecker(id);
+            if (id == User.Identity.GetUserId())
+            {
+                return DetailNullChecker(id);
+            }
+            TempData["Unauthorized"] = "You are not authorized to use this function";
+            return RedirectToAction("Index","Wisdom");
         }
         //Delete confirmed
         //POST: User/Delete/{id}
         [HttpPost]
-        [Authorize(Roles ="Admin")]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
         public ActionResult Delete(UserDetailItem userToDelete)
         {
-            _userService = new UserService(User.Identity.GetUserId());
-            if (_userService.RemoveUser(userToDelete.UserId))
+            if (userToDelete.UserId == User.Identity.GetUserId())
             {
-                TempData["RemoveResult"] = "User Removed Successfully";
-                //Should create admin portal at some point
-                return RedirectToAction("Index");
+                _userService = new UserService(User.Identity.GetUserId());
+                if (_userService.RemoveUser(userToDelete.UserId))
+                {
+                    TempData["RemoveResult"] = "User Removed Successfully";
+                    //Should create admin portal at some point
+                    return RedirectToAction("Index");
+                }
+                return View(userToDelete);
             }
-            return View(userToDelete);
+            TempData["Unauthorized"] = "You are not authorized to use this function";
+            return RedirectToAction("Index", "Wisdom");
         }
         private ActionResult DetailNullChecker(string id)
         {

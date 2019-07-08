@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace Wiser.Data
     public enum Genre { Proverb, Quote, Fact, Musing }
     public class Wisdom
     {
+        [DefaultValue(false)]
+        public bool IsUpvoted { get; set; }
         //Keys and Ids
         [Key]
         public int WisdomId { get; set; }

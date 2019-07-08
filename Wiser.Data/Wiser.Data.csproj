@@ -145,6 +145,10 @@
     <Compile Include="Migrations\201907081422159_reinit.Designer.cs">
       <DependentUpon>201907081422159_reinit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907081537553_isupvoted.cs" />
+    <Compile Include="Migrations\201907081537553_isupvoted.Designer.cs">
+      <DependentUpon>201907081537553_isupvoted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
@@ -220,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907081422159_reinit.resx">
       <DependentUpon>201907081422159_reinit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907081537553_isupvoted.resx">
+      <DependentUpon>201907081537553_isupvoted.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

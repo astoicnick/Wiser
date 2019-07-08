@@ -24,5 +24,7 @@ namespace Wiser.Models.Wisdom
         public string Source { get; set; }
         [Required]
         public Genre WisdomGenre { get; set; }
+        [UIHint("Upvoted")]
+        public bool IsUpvoted { get; set; }
     }
 }

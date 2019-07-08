@@ -14,7 +14,6 @@ namespace Wiser.Models.Wisdom
         public string UserId { get; set; }
         [Required]
         public int AuthorId { get; set; }
-        [Required]
         [Display(Name = "Author")]
         //Put in string for author name so I could link Author's id to  his/her name
         public string AuthorName { get; set; }

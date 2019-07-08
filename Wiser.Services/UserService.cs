@@ -151,16 +151,20 @@ namespace Wiser.Services
 
         public bool EditUser(UserEditItem userToEdit)
         {
-            using (var ctx = new ApplicationDbContext())
+            if (userToEdit.UserId == _userId)
             {
-                var toChange = ctx.Users.Find(userToEdit.UserId);
-                toChange.Email = userToEdit.Email;
-                toChange.FirstName = userToEdit.FirstName;
-                toChange.LastName = userToEdit.LastName;
-                toChange.PhoneNumber = userToEdit.PhoneNumber;
-                toChange.UserName = userToEdit.UserName;
-                return ctx.SaveChanges() == 1;
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var toChange = ctx.Users.Find(userToEdit.UserId);
+                    toChange.Email = userToEdit.Email;
+                    toChange.FirstName = userToEdit.FirstName;
+                    toChange.LastName = userToEdit.LastName;
+                    toChange.PhoneNumber = userToEdit.PhoneNumber;
+                    toChange.UserName = userToEdit.UserName;
+                    return ctx.SaveChanges() == 1;
+                }
             }
+            return false;
         }
         public UserEditItem GetEditItem(string userId)
         {

@@ -10,6 +10,8 @@ namespace Wiser.Models.Wisdom
 {
     public class WisdomScrollItem
     {
+        [UIHint("Upvoted")]
+        public bool IsUpvoted { get; set; }
         [Required]
         public int WisdomId { get; set; }
         [Required]

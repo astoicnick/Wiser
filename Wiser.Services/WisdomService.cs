@@ -90,10 +90,11 @@ namespace Wiser.Services
                                 Source = e.Source,
                                 ScrollAuthor = new AuthorScrollItem()
                                 {
-                                    AuthorId = e.AuthorId,
-                                    AuthorName = e.User.FirstName +" "+ e.User.LastName,
-                                    WisdomCount = ctx.WisdomTable.Where(a => a.AuthorId == e.AuthorId).Count()
+                                    AuthorId = e.Author.AuthorId,
+                                    AuthorName = e.Author.FullName,
+                                    WisdomCount = e.Author.WisdomCount
                                 }
+
                             }).ToList();
                 return query;
             }
