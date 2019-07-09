@@ -311,6 +311,7 @@
     <Content Include="Views\Wisdom\Details.cshtml" />
     <Content Include="Views\Wisdom\Edit.cshtml" />
     <Content Include="Views\Wisdom\Delete.cshtml" />
+    <Content Include="Views\Shared\ScrollItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

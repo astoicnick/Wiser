@@ -75,7 +75,23 @@ namespace Wiser.Services
                     FirstName = query.FirstName,
                     LastName = query.LastName,
                     Virtue = query.Virtue,
-                    Attributions = Attributions(query.AuthorId),
+                    Attributions = ctx.WisdomTable.Where(w=>w.AuthorId == query.AuthorId).Select(w=> new WisdomScrollItem()
+                    {
+                        FirstName = w.Author.FirstName,
+                        LastName = w.Author.LastName,
+                        ScrollAuthor = new AuthorScrollItem()
+                        {
+                            AuthorId = w.AuthorId,
+                            AuthorName = w.Author.FullName,
+                            WisdomCount = w.Author.WisdomCount
+                        },
+                        Content = w.Content,
+                        Source = w.Source,
+                        IsUpvoted = w.IsUpvoted,
+                        UserId = w.UserId,
+                        Virtue = w.PostVirtue,
+                        WisdomId = w.WisdomId
+                    }).ToList(),
                     CreatedAt = query.CreatedAt
                 };
                 return authorToReturn;
@@ -112,23 +128,6 @@ namespace Wiser.Services
                 FirstName = detail.FirstName,
                 LastName = detail.LastName
             };
-        }
-        public List<WisdomAttributionItem> Attributions(int authorId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query = (List<WisdomAttributionItem>) ctx
-                    .WisdomTable.
-                    Where(w => w.AuthorId == authorId)
-                    .Select(w => new WisdomAttributionItem() {
-                        WisdomId = w.WisdomId,
-                        CreatedAt = w.CreatedAt,
-                        Content = w.Content,
-                        Source = w.Source,
-                        IsUpvoted = w.IsUpvoted
-                    }).ToList();
-                return query;
-            }
         }
 
     }

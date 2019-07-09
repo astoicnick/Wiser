@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wiser.Contracts;
-using Wiser.Contractst;
+using Wiser.Contracts;
 using Wiser.Data;
 using Wiser.Models;
 using Wiser.Models.Author;

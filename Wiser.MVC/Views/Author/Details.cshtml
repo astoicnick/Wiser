@@ -49,10 +49,62 @@
         <dd>
             @Html.DisplayFor(model => model.CreatedAt)
         </dd>
-
+        @Html.Partial("ScrollItem", Model.Attributions)
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+@section scripts {
+    <script language="javascript" type="text/javascript">
+        console.log("Yup it's checked");
+        $(document).ready(function () {
+            $(".upvote").click(function (e) {
+                var target = $(e.target);
+                var id = target.attr('id');
+                console.log(id);
+                $.ajax({
+                    type: 'PUT',
+                    url: `/api/upvote/${id}`
+                })
+                    .done(function (r) {
+                        if (r == false) {
+                            alert("Already upvoted! ;) UwU");
+                        }
+                        else {
+                            alert('${r} naniwa!');
+                            target.removeClass();
+                            target.hide();
+                        }
+                    })
+                    .fail(function (r) {
+                        alert("Failed to upvote post");
+                    });
+            });
+            $(".favoriteButton").click(function (e) {
+                var target = $(e.target);
+                var id = target.attr('id');
+                console.log(id);
+                $.ajax({
+                    type: 'POST',
+                    url: `/api/favorite/${id}`
+                })
+                    .done(function (r) {
+                        if (r == false) {
+                            alert("Already fAVOREITD! ;) UwU");
+                        }
+                        else {
+                            alert('${r} favp!');
+                            target.removeClass();
+                            target.hide();
+                        }
+                    })
+                    .fail(function (r) {
+                        alert("Failed to favorite post");
+                    });
+            });
+        });
+    </script>
+
+}

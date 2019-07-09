@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Wiser.Models.Wisdom.WisdomScrollItem>
+
+@foreach (var w in Model)
+{
+    <div class="container scrollContainer">
+        <div class="row topRow">
+            <div class="col-3 user">
+                @Html.ActionLink(w.UserName, $"Details/{w.UserId}", "User")
+            </div>
+        </div>
+        <div class="row contentrow">
+            <div class=" col-12 content">
+                <h1 class="display-5">
+                    @Html.DisplayFor(modelItem => w.Content, new { @class = "contentText" })
+                </h1>
+            </div>
+
+        </div>
+        <div class="row bottomRow">
+            <div class="col-3 upvoteContainer">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+
+                @Html.CheckBoxFor(modelItem => w.IsUpvoted, new { @class = "upvote", id = w.WisdomId })
+                &nbsp;
+                &nbsp;
+                <button class="favoriteButton" id="@w.WisdomId">FAVORITE</button>
+            </div>
+            <div class=" col-9 author">
+                <p class="sourceText">
+                    @Html.DisplayFor(modelItem => w.Source, new { @class = "sourceText" })
+                </p>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                @Html.ActionLink(w.ScrollAuthor.AuthorName, $"Details/{w.ScrollAuthor.AuthorId}", "Author", null, new { @class = "authorText" })
+            </div>
+
+
+
+        </div>
+    </div>
+}
+
+<style>
+    .scrollContainer {
+        padding: 5px;
+        border: 2px solid black;
+        border-radius: 10px;
+        display: block;
+        text-align: center;
+        height: 100%;
+        margin: 0 auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .contentrow {
+        width: 70%;
+        height: 100%;
+        display: inline-block;
+        text-align: center;
+        margin: auto;
+        justify-content: center;
+    }
+
+    .contentText {
+        font-size: larger;
+    }
+
+    .topRow {
+        height: 20%;
+    }
+
+    .bottomRow {
+        height: 20%;
+    }
+
+    .upvoteContainer {
+        top: 10px;
+        padding-left: 20px;
+        text-align: left;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .author {
+        padding-right: 30px;
+        margin: 0px;
+        text-align: right;
+    }
+
+    .user {
+        text-align: left;
+        padding-left: 20px;
+    }
+
+    .authorText {
+        font-style: oblique;
+    }
+
+    .sourceText {
+        font-style: oblique;
+        margin: 0 auto;
+        padding: 0px;
+    }
+</style>
