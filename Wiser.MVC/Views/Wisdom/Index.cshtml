@@ -88,7 +88,7 @@
     <div class="container scrollContainer">
         <div class="row topRow">
             <div class="col-3 user">
-                @Html.ActionLink(w.UserName,$"Details/{w.UserId}","User")
+                @Html.ActionLink(w.UserName, $"Details/{w.UserId}", "User")
             </div>
         </div>
         <div class="row contentrow">
@@ -118,7 +118,8 @@
                 &nbsp;
                 &nbsp;
                 &nbsp;
-                @Html.ActionLink(w.ScrollAuthor.AuthorName, $"Details/{w.ScrollAuthor.AuthorId}", "Author",null, new {@class = "authorText" })
+                @Html.ActionLink(w.ScrollAuthor.AuthorName, $"Details/{w.ScrollAuthor.AuthorId}", "Author", null, new { @class = "authorText" })
+                <button class="favoriteButton" id="@w.WisdomId">FAVORITE</button>
             </div>
 
 
@@ -133,10 +134,10 @@
             $(".upvote").click(function (e) {
                 var target = $(e.target);
                 var id = target.attr('id');
+                console.log(id);
                 $.ajax({
                     type: 'PUT',
-                    url: `api/upvote/${id}`,
-                    //headers: { "X-HTTP-METHOD-Override": "PUT" }
+                    url: `/api/upvote/${id}`
                 })
                     .done(function (r) {
                         if (r == false) {
@@ -147,14 +148,36 @@
                             target.removeClass();
                             target.hide();
                         }
-
                     })
                     .fail(function (r) {
                         alert("Failed to upvote post");
                     });
             });
+            $(".favoriteButton").click(function (e) {
+                var target = $(e.target);
+                var id = target.attr('id');
+                console.log(id);
+                $.ajax({
+                    type: 'POST',
+                    url: `/api/favorite/${id}`
+                })
+                    .done(function (r) {
+                        if (r == false) {
+                            alert("Already fAVOREITD! ;) UwU");
+                        }
+                        else {
+                            alert('${r} favp!');
+                            target.removeClass();
+                            target.hide();
+                        }
+                    })
+                    .fail(function (r) {
+                        alert("Failed to favorite post");
+                    });
+            });
         });
     </script>
+
 }
 <style>
     .scrollContainer {

@@ -47,7 +47,7 @@ namespace Wiser.MVC.Controllers
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Player could not be added.");
+            ModelState.AddModelError("", "Wisdom could not be added.");
 
             return View(wisdomToCreate);
         }

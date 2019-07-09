@@ -28,5 +28,17 @@ namespace Wiser.MVC.Controllers
             return false;
 
         }
+        [HttpPost]
+        [Route("Favorite/{id}")]
+        public bool Favorite(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var userService = new UserService(userId);
+            if (userService.AddFavorite(id))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

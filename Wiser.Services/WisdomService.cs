@@ -45,14 +45,14 @@ namespace Wiser.Services
                     ctx.AuthorTable.Add(newAuthor);
                     entity.Author = newAuthor;
                     ctx.SaveChanges();
-                    entity.Author.WisdomCount += 1;
                     entity.WisdomId = ctx.WisdomTable.Count() + 1;
                     if ((entity.User = ctx.Users.Find(entity.UserId)) == null)
                     {
                         return false;
                     }
                     ctx.WisdomTable.Add(entity);
-                    return ctx.SaveChanges() == 2;
+                    ctx.SaveChanges();
+                    return true;
                 }
                 else {
                     entity.AuthorId = wisdomToCreate.AuthorId.Value;
@@ -64,8 +64,8 @@ namespace Wiser.Services
                         return false;
                     }
                     ctx.WisdomTable.Add(entity);
-                    var changes = ctx.SaveChanges();
-                    return changes == 2;
+                    ctx.SaveChanges();
+                    return true;
                 }
             }
         }
@@ -112,6 +112,10 @@ namespace Wiser.Services
                     wisdom.User.Virtue -= wisdom.PostVirtue;
                     wisdom.Author.WisdomCount -= 1;
                     wisdom.Author.Virtue -= wisdom.PostVirtue;
+                    if (wisdom.Author.WisdomCount == 0)
+                    {
+                        ctx.AuthorTable.Remove(wisdom.Author);
+                    }
                     ctx.WisdomTable.Remove(ctx.WisdomTable.Find(wisdomToRemove.WisdomId));
                     ctx.SaveChanges();
                     var saveCount = ctx.SaveChanges();
@@ -159,10 +163,13 @@ namespace Wiser.Services
                         ctx
                         .WisdomTable
                         .Single(e => e.WisdomId == wisdomToUpdate.WisdomId && e.UserId == wisdomToUpdate.UserId);
+                    int newVirtue = toUpdate.PostVirtue;
                     toUpdate.Author.WisdomCount -= 1;
+                    toUpdate.Author.Virtue -= newVirtue;
                     ctx.SaveChanges();
                     ctx.Entry(toUpdate).CurrentValues.SetValues(wisdomToUpdate);
                     toUpdate.Author.WisdomCount += 1;
+                    toUpdate.Author.Virtue += newVirtue;
                     ctx.SaveChanges();
                     var saveCount = ctx.SaveChanges();
                     return ctx.SaveChanges() == saveCount;

@@ -22,17 +22,21 @@ namespace Wiser.Services
         {
             _userId = userId;
         }
-        public bool AddFavorite(WisdomFavoriteItem wisdomToFavorite)
+        public bool AddFavorite(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var userCheck = ctx.FavoriteTable.Where(u => u.UserId == _userId && u.WisdomId == id);
+                if (userCheck.Count() > 0)
+                {
+                    return false;
+                }
                 ctx.FavoriteTable.Add(new Favorite()
                 {
                     UserId = _userId,
-                    User = ctx.Users.Find(wisdomToFavorite.UserId),
-                    WisdomId = wisdomToFavorite.WisdomId,
-                    Wisdom = ctx.WisdomTable.Find(wisdomToFavorite.WisdomId)
+                    WisdomId = id
                 });
+                // var saveCount == ctx.SaveChanges();
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -107,21 +111,22 @@ namespace Wiser.Services
             }
         }
 
-        public bool RemoveFavorite(WisdomFavoriteItem wisdomToUnfavorite)
+        public bool RemoveFavorite(int id)
         {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var favoriteToRemove = new Favorite()
-                {
-                    FavoriteId = wisdomToUnfavorite.FavoriteId,
-                    UserId = wisdomToUnfavorite.UserId,
-                    User = ctx.Users.Find(wisdomToUnfavorite.UserId),
-                    WisdomId = wisdomToUnfavorite.WisdomId,
-                    Wisdom = ctx.WisdomTable.Find(wisdomToUnfavorite.WisdomId)
-                };
-                ctx.FavoriteTable.Remove(favoriteToRemove);
-                return ctx.SaveChanges() == 1;
-            }
+            return true;
+            //using (var ctx = new ApplicationDbContext())
+            //{
+            //    var favoriteToRemove = new Favorite()
+            //    {
+            //        FavoriteId = wisdomToUnfavorite.FavoriteId,
+            //        UserId = wisdomToUnfavorite.UserId,
+            //        User = ctx.Users.Find(wisdomToUnfavorite.UserId),
+            //        WisdomId = wisdomToUnfavorite.WisdomId,
+            //        Wisdom = ctx.WisdomTable.Find(wisdomToUnfavorite.WisdomId)
+            //    };
+            //    ctx.FavoriteTable.Remove(favoriteToRemove);
+            //    return ctx.SaveChanges() == 1;
+            //}
         }
 
         public bool RemoveUser(string id)

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using Wiser.Models.User;
 using Wiser.Models.Wisdom;
 
-namespace Wiser.Contractst
+namespace Wiser.Contracts
 {
     public interface IUserService
     {
         bool Upvote(int wisdomId);
-        bool AddFavorite(WisdomFavoriteItem wisdomToFavorite);
-        bool RemoveFavorite(WisdomFavoriteItem wisdomToUnfavorite);
+        bool AddFavorite(int id);
+        bool RemoveFavorite(int id);
         List<WisdomFavoriteItem> GetFavorites();
         List<WisdomContributionItem> GetContributions();
         bool RemoveUser(string id);
