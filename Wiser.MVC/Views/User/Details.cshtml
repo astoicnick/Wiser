@@ -17,7 +17,6 @@
         <dd>
             @Html.DisplayFor(model => model.UserId)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Role)
         </dt>
@@ -61,6 +60,10 @@
             @Html.DisplayNameFor(model => model.Contributions)
         </dt>
         @Html.Partial("ScrollItem", Model.Contributions)
+        <dt>
+            @Html.DisplayNameFor(model=> model.Favorites)
+        </dt>
+        @Html.Partial("ScrollItem",Model.Favorites)
     </dl>
 </div>
 <p>

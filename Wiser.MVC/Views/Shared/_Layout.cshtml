@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -20,7 +21,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Wisdom", "Index", "Wisdom")</li>
                     <li>@Html.ActionLink("Author", "Index", "Author")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Favorites","Index","Favorite")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

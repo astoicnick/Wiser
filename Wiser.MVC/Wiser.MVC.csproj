@@ -181,6 +181,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
+    <Compile Include="Controllers\FavoriteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\DynamicController.cs" />
@@ -312,6 +313,7 @@
     <Content Include="Views\Wisdom\Edit.cshtml" />
     <Content Include="Views\Wisdom\Delete.cshtml" />
     <Content Include="Views\Shared\ScrollItem.cshtml" />
+    <Content Include="Views\Favorite\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

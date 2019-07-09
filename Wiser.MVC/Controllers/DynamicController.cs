@@ -14,19 +14,20 @@ namespace Wiser.MVC.Controllers
     {
 
         private WisdomService _wisdomService;
+        private UserService _userService;
+        private string _userId;
         [HttpPut]
         [Route("Upvote/{id}")]
         public bool Upvote(int id)
         {
-            var userId = User.Identity.GetUserId();
-            var userService = new UserService(userId);
-            _wisdomService = new WisdomService(userId);
-            if (userService.Upvote(id))
+            _userId = User.Identity.GetUserId();
+            _userService = new UserService(_userId);
+            _wisdomService = new WisdomService(_userId);
+            if (_userService.Upvote(id))
             {
                 return true;
             }
             return false;
-
         }
         [HttpPost]
         [Route("Favorite/{id}")]
@@ -35,6 +36,18 @@ namespace Wiser.MVC.Controllers
             var userId = User.Identity.GetUserId();
             var userService = new UserService(userId);
             if (userService.AddFavorite(id))
+            {
+                return true;
+            }
+            return false;
+        }
+        [HttpDelete]
+        [Route("rmfavorite/{id}")]
+        public bool RemoveFavorite(int id)
+        {
+            _userId = User.Identity.GetUserId();
+            _userService = new UserService(_userId);
+            if (_userService.RemoveFavorite(id))
             {
                 return true;
             }

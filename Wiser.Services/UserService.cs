@@ -69,6 +69,7 @@ namespace Wiser.Services
                     .Find(id);
                 return new UserDetailItem()
                 {
+                    
                     UserId = user.Id,
                     Name = user.FirstName + " " + user.LastName,
                     Contributions = ctx.WisdomTable.Where(w => w.UserId == user.Id).Select(a => new WisdomScrollItem()
@@ -85,8 +86,27 @@ namespace Wiser.Services
                         Virtue = a.PostVirtue,
                         UserId = a.UserId,
                         WisdomId = a.WisdomId,
-                        Content = a.Content
-                    }).ToList()
+                        Content = a.Content,
+                        IsUpvoted = a.IsUpvoted
+
+                    }).ToList(),
+                    Favorites = ctx.FavoriteTable.Where(w => w.UserId == user.Id).Select(f => new WisdomScrollItem()
+                    {
+                        FirstName = f.User.FirstName,
+                        LastName = f.User.LastName,
+                        ScrollAuthor = new AuthorScrollItem()
+                        {
+                            AuthorId = f.Wisdom.Author.AuthorId,
+                            AuthorName = f.Wisdom.Author.FirstName + "" + f.Wisdom.Author.LastName,
+                            WisdomCount = f.Wisdom.Author.WisdomCount
+                        },
+                        Source = f.Wisdom.Source,
+                        Virtue = f.Wisdom.PostVirtue,
+                        UserId = f.Wisdom.UserId,
+                        WisdomId = f.Wisdom.WisdomId,
+                        Content = f.Wisdom.Content,
+                        IsUpvoted = f.Wisdom.IsUpvoted
+                    }).ToList(),
                 };
 
                 }
@@ -113,20 +133,12 @@ namespace Wiser.Services
 
         public bool RemoveFavorite(int id)
         {
-            return true;
-            //using (var ctx = new ApplicationDbContext())
-            //{
-            //    var favoriteToRemove = new Favorite()
-            //    {
-            //        FavoriteId = wisdomToUnfavorite.FavoriteId,
-            //        UserId = wisdomToUnfavorite.UserId,
-            //        User = ctx.Users.Find(wisdomToUnfavorite.UserId),
-            //        WisdomId = wisdomToUnfavorite.WisdomId,
-            //        Wisdom = ctx.WisdomTable.Find(wisdomToUnfavorite.WisdomId)
-            //    };
-            //    ctx.FavoriteTable.Remove(favoriteToRemove);
-            //    return ctx.SaveChanges() == 1;
-            //}
+            using (var ctx = new ApplicationDbContext())
+            {
+                var favoriteToRemove = ctx.FavoriteTable.Single(w => w.WisdomId == id && w.UserId == _userId);
+                ctx.FavoriteTable.Remove(favoriteToRemove);
+                return ctx.SaveChanges() == 1;
+            }
         }
 
         public bool RemoveUser(string id)
@@ -203,12 +215,13 @@ namespace Wiser.Services
                 wisdomToUpvote.PostVirtue += 1;
                 wisdomToUpvote.Author.Virtue += 1;
                 wisdomToUpvote.User.Virtue += 1;
-                ctx.UpvotedTable.Add(new Upvoted()
+                var newUpvote = new Upvoted()
                 {
                     UserId = _userId,
                     WisdomId = wisdomId,
                     CreatedAt = DateTime.UtcNow
-                });
+                };
+                ctx.UpvotedTable.Add(newUpvote);
                 ctx.SaveChanges();
 
                 int virtuePostUpdate = (int)(wisdomToUpvote.User.Virtue) + (int)(wisdomToUpvote.Author.Virtue) + (int)(wisdomToUpvote.PostVirtue);
