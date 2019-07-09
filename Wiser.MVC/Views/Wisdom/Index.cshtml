@@ -82,60 +82,43 @@
             </td>
         </tr>
     }
-    @* $document.ready(function () {
-            $(".upvote").click(function (e) {
-                var target = $(e.target);
-                var wisdomId = target.attr("data-id");
-                var addClass = target.hasClass("jumbotron");
-                $.ajax({
-                    method: Upvote,
-                    url: "wisdom/upvote" + wisdomId,
-                    data: null
-                })
-                    .done(function (r) {
-                        target.removeClass();
-                        target.addClass("jumbotron");
-                    })
-                    .fail(function (r) {
-                        alert("Failed to upvote post");
-                    });
-                    );
-        }); *@
 </table>
 @foreach (var w in Model)
 {
     <div class="container scrollContainer">
         <div class="row topRow">
             <div class="col-3 user">
-                @Html.ActionLink(w.UserName, "Details", "User", new { id = w.UserId })
+                @Html.ActionLink(w.UserName,$"Details/{w.UserId}","User")
             </div>
         </div>
         <div class="row contentrow">
             <div class=" col-12 content">
                 <h1 class="display-5">
-                @Html.DisplayFor(modelItem => w.Content, new { @class = "contentText" })
-                    </h1>
+                    @Html.DisplayFor(modelItem => w.Content, new { @class = "contentText" })
+                </h1>
             </div>
-            
+
         </div>
         <div class="row bottomRow">
-            <div class="col-3 upvote">
-                @Html.CheckBoxFor(modelItem => w.IsUpvoted)
+            <div class="col-3 upvoteContainer">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+
+                @Html.CheckBoxFor(modelItem => w.IsUpvoted, new { @class = "upvote", id = w.WisdomId })
                 &nbsp;
-                -
                 &nbsp;
                 Upvote
             </div>
             <div class=" col-9 author">
-                @Html.DisplayFor(modelItem => w.Source, new { @class = "authorText" })
+                <p class="sourceText">
+                    @Html.DisplayFor(modelItem => w.Source, new { @class = "sourceText" })
+                </p>
                 &nbsp;
                 &nbsp;
                 &nbsp;
-                -
                 &nbsp;
                 &nbsp;
                 &nbsp;
-                @Html.ActionLink(w.ScrollAuthor.AuthorName, "Details", "Author", new { id = w.ScrollAuthor.AuthorId, @class = "authorText" })
+                @Html.ActionLink(w.ScrollAuthor.AuthorName, $"Details/{w.ScrollAuthor.AuthorId}", "Author",null, new {@class = "authorText" })
             </div>
 
 
@@ -147,35 +130,34 @@
     <script language="javascript" type="text/javascript">
         console.log("Yup it's checked");
         $(document).ready(function () {
-            $("#item_IsUpvoted").click(function (e) {
+            $(".upvote").click(function (e) {
                 var target = $(e.target);
-                var wisdomId = target.attr("data-id");
-                var addClass = target.hasClass("jumbotron");
-                var id = 7;
+                var id = target.attr('id');
                 $.ajax({
                     type: 'PUT',
-                    url: `api/Wisdom/Upvote/${id}`,
+                    url: `api/upvote/${id}`,
                     //headers: { "X-HTTP-METHOD-Override": "PUT" }
                 })
                     .done(function (r) {
-                        target.removeClass();
-                        target.addClass("jumbotron");
+                        if (r == false) {
+                            alert("Already upvoted! ;) UwU");
+                        }
+                        else {
+                            alert('${r} naniwa!');
+                            target.removeClass();
+                            target.hide();
+                        }
+
                     })
                     .fail(function (r) {
                         alert("Failed to upvote post");
                     });
-            })
+            });
         });
-                //functionName(){
-                //    goes to api, makes a request for whatever you define
-                //prevent default so page doesnt just refresh
-                //}
-                //<button onClick="functionName();"> PRESS ME TO FETCH BRUH</button>
-
     </script>
 }
 <style>
-    .scrollContainer{
+    .scrollContainer {
         padding: 5px;
         border: 2px solid black;
         border-radius: 10px;
@@ -183,8 +165,11 @@
         text-align: center;
         height: 100%;
         margin: 0 auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
-    .contentrow{
+
+    .contentrow {
         width: 70%;
         height: 100%;
         display: inline-block;
@@ -192,28 +177,45 @@
         margin: auto;
         justify-content: center;
     }
-    .contentText{
-        font-size:larger;
+
+    .contentText {
+        font-size: larger;
     }
-    .topRow{
+
+    .topRow {
         height: 20%;
     }
-    .bottomRow{
+
+    .bottomRow {
         height: 20%;
     }
-    .upvote{
+
+    .upvoteContainer {
+        top: 10px;
         padding-left: 20px;
         text-align: left;
-        float: left;
         margin: 0 auto;
+        display: block;
     }
-    .author{
+
+    .author {
         padding-right: 30px;
-        margin: 0 px;
+        margin: 0px;
         text-align: right;
     }
-    .user{
+
+    .user {
         text-align: left;
         padding-left: 20px;
+    }
+
+    .authorText {
+        font-style: oblique;
+    }
+
+    .sourceText {
+        font-style: oblique;
+        margin: 0 auto;
+        padding: 0px;
     }
 </style>

@@ -189,7 +189,7 @@ namespace Wiser.Services
             {
                 //null obj
                 var upvoteCount = ctx.UpvotedTable.Where(u => u.WisdomId == wisdomId && u.UserId == _userId);
-                if (upvoteCount.Count() < 0)
+                if (upvoteCount.Count() > 0)
                 {
                     return false;
                 }
@@ -201,10 +201,10 @@ namespace Wiser.Services
                 ctx.UpvotedTable.Add(new Upvoted()
                 {
                     UserId = _userId,
-                    WisdomId = wisdomId
+                    WisdomId = wisdomId,
+                    CreatedAt = DateTime.UtcNow
                 });
                 ctx.SaveChanges();
-                ctx.Users.Find(_userId).VirtueToGiveToday -= 1;
 
                 int virtuePostUpdate = (int)(wisdomToUpvote.User.Virtue) + (int)(wisdomToUpvote.Author.Virtue) + (int)(wisdomToUpvote.PostVirtue);
                 return virtuePreUpdate != virtuePostUpdate;

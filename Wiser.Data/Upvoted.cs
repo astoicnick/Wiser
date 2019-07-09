@@ -10,6 +10,7 @@ namespace Wiser.Data
 {
     public class Upvoted
     {
+        public DateTime CreatedAt { get; set; }
         [Key]
         public int PostId { get; set; }
         [ForeignKey("User")]

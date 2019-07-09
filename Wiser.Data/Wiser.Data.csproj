@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201907082002221_testing=0syntax.Designer.cs">
       <DependentUpon>201907082002221_testing=0syntax.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907091412191_addedcreatedatupvoted.cs" />
+    <Compile Include="Migrations\201907091412191_addedcreatedatupvoted.Designer.cs">
+      <DependentUpon>201907091412191_addedcreatedatupvoted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Upvoted.cs" />
     <Compile Include="Favorite.cs" />
     <Compile Include="IdentityModels.cs" />
@@ -242,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907082002221_testing=0syntax.resx">
       <DependentUpon>201907082002221_testing=0syntax.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907091412191_addedcreatedatupvoted.resx">
+      <DependentUpon>201907091412191_addedcreatedatupvoted.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

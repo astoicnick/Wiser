@@ -111,6 +111,7 @@ namespace Wiser.Services
                     var wisdom = ctx.WisdomTable.Find(wisdomToRemove.WisdomId);
                     wisdom.User.Virtue -= wisdom.PostVirtue;
                     wisdom.Author.WisdomCount -= 1;
+                    wisdom.Author.Virtue -= wisdom.PostVirtue;
                     ctx.WisdomTable.Remove(ctx.WisdomTable.Find(wisdomToRemove.WisdomId));
                     ctx.SaveChanges();
                     var saveCount = ctx.SaveChanges();

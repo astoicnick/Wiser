@@ -7,13 +7,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace Wiser.Data
 {
     public class User : IdentityUser
     {
         public int Virtue { get; set; }
-        public int VirtueToGiveToday { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FullName { get; set; }
