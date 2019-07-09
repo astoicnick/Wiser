@@ -42,9 +42,7 @@
             @Html.DisplayNameFor(model => model.IsUpvoted)
         </th>
         <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+    </tr>@foreach (var item in Model)
     {
         <tr>
             <td>
@@ -104,6 +102,47 @@
                     );
         }); *@
 </table>
+@foreach (var w in Model)
+{
+    <div class="container scrollContainer">
+        <div class="row topRow">
+            <div class="col-3 user">
+                @Html.ActionLink(w.UserName, "Details", "User", new { id = w.UserId })
+            </div>
+        </div>
+        <div class="row contentrow">
+            <div class=" col-12 content">
+                <h1 class="display-5">
+                @Html.DisplayFor(modelItem => w.Content, new { @class = "contentText" })
+                    </h1>
+            </div>
+            
+        </div>
+        <div class="row bottomRow">
+            <div class="col-3 upvote">
+                @Html.CheckBoxFor(modelItem => w.IsUpvoted)
+                &nbsp;
+                -
+                &nbsp;
+                Upvote
+            </div>
+            <div class=" col-9 author">
+                @Html.DisplayFor(modelItem => w.Source, new { @class = "authorText" })
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                -
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                @Html.ActionLink(w.ScrollAuthor.AuthorName, "Details", "Author", new { id = w.ScrollAuthor.AuthorId, @class = "authorText" })
+            </div>
+
+
+
+        </div>
+    </div>
+}
 @section scripts {
     <script language="javascript" type="text/javascript">
         console.log("Yup it's checked");
@@ -127,11 +166,54 @@
                     });
             })
         });
-        //functionName(){
-        //    goes to api, makes a request for whatever you define
-        //prevent default so page doesnt just refresh
-        //}
-        //<button onClick="functionName();"> PRESS ME TO FETCH BRUH</button>
-        
+                //functionName(){
+                //    goes to api, makes a request for whatever you define
+                //prevent default so page doesnt just refresh
+                //}
+                //<button onClick="functionName();"> PRESS ME TO FETCH BRUH</button>
+
     </script>
 }
+<style>
+    .scrollContainer{
+        padding: 5px;
+        border: 2px solid black;
+        border-radius: 10px;
+        display: block;
+        text-align: center;
+        height: 100%;
+        margin: 0 auto;
+    }
+    .contentrow{
+        width: 70%;
+        height: 100%;
+        display: inline-block;
+        text-align: center;
+        margin: auto;
+        justify-content: center;
+    }
+    .contentText{
+        font-size:larger;
+    }
+    .topRow{
+        height: 20%;
+    }
+    .bottomRow{
+        height: 20%;
+    }
+    .upvote{
+        padding-left: 20px;
+        text-align: left;
+        float: left;
+        margin: 0 auto;
+    }
+    .author{
+        padding-right: 30px;
+        margin: 0 px;
+        text-align: right;
+    }
+    .user{
+        text-align: left;
+        padding-left: 20px;
+    }
+</style>

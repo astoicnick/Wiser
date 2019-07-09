@@ -188,8 +188,8 @@ namespace Wiser.Services
             using (var ctx = new ApplicationDbContext())
             {
                 //null obj
-                var userCheck = ctx.UpvotedTable.Single(u => u.WisdomId == wisdomId && u.UserId == _userId);
-                if (userCheck != null)
+                var upvoteCount = ctx.UpvotedTable.Where(u => u.WisdomId == wisdomId && u.UserId == _userId);
+                if (upvoteCount.Count() < 0)
                 {
                     return false;
                 }
