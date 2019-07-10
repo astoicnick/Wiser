@@ -29,6 +29,24 @@ namespace Wiser.MVC
             {
                 roleManager.Create(new IdentityRole("User"));
             }
+            if (userManager.FindByEmail("user@user.com") == null)
+            {
+
+                //Creating new "Super user"
+                var useruser = new User();
+                useruser.Email = "user@user.com";
+                useruser.UserName = "user@user.com";
+                useruser.FirstName = "Nicholas";
+                useruser.LastName = "Perry";
+                string useruserPWD = "Password13@";
+                var userchkUser = userManager.Create(useruser, useruserPWD);
+
+                //Add default User to Role Admin  
+                if (userchkUser.Succeeded)
+                {
+                    var result1 = userManager.AddToRole(useruser.Id, "User");
+                }
+            }
             if (userManager.FindByEmail("admin@admin.com") == null)
             {
 

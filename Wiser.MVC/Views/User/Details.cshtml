@@ -1,4 +1,5 @@
 ﻿@model Wiser.Models.User.UserDetailItem
+    @using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Details";
@@ -58,12 +59,22 @@
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Contributions)
+            <a  class="fa fa-caret-down" data-toggle="collapse" data-target="#contributionCollapse" aria-expanded="true" aria-controls="contributionCollapse"></a>
         </dt>
+        <dd>
+            <div id="contributionCollapse" class="collapse">
         @Html.Partial("ScrollItem", Model.Contributions)
+                </div>
+            </dd>
         <dt>
-            @Html.DisplayNameFor(model=> model.Favorites)
+            @Html.DisplayNameFor(model => model.Favorites)
         </dt>
-        @Html.Partial("ScrollItem",Model.Favorites)
+        <dd>
+        @if (User.Identity.GetUserId() == Model.UserId)
+        {
+            @Html.Partial("ScrollItem", Model.Favorites)
+
+        }</dd>
     </dl>
 </div>
 <p>

@@ -3,122 +3,37 @@
 @{
     ViewBag.Title = "Index";
 }
-<h1 class="display-1">Favorites</h1>
-@foreach (var w in Model.Favorites)
+@Scripts.Render("~/Content/js")
+<h1 class="display-1" style="text-align: center; font-weight: lighter;">Favorites</h1>
+@if (Model.Favorites.Count == 0)
 {
-    <div class="container scrollContainer">
-        <div class="row topRow">
-            <div class="col-3 user">
-                @Html.ActionLink(w.UserName, $"Details/{w.UserId}", "User")
-            </div>
-        </div>
-        <div class="row contentrow">
-            <div class=" col-12 content">
-                <h1 class="display-5">
-                    @Html.DisplayFor(modelItem => w.Content, new { @class = "contentText" })
-                </h1>
-            </div>
-
-        </div>
-        <div class="row bottomRow">
-            <div class="col-3 upvoteContainer">
-                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-
-                @Html.CheckBoxFor(modelItem => w.IsUpvoted, new { @class = "upvote", id = w.WisdomId })
-                &nbsp;
-                &nbsp;
-                <button class="unfavoriteButton" id="@w.WisdomId">Unfavorite</button>
-            </div>
-            <div class=" col-9 author">
-                <p class="sourceText">
-                    @Html.DisplayFor(modelItem => w.Source, new { @class = "sourceText" })
-                </p>
-                &nbsp;
-                &nbsp;
-                &nbsp;
-                &nbsp;
-                &nbsp;
-                &nbsp;
-                @Html.ActionLink(w.ScrollAuthor.AuthorName, $"Details/{w.ScrollAuthor.AuthorId}", "Author", null, new { @class = "authorText" })
-            </div>
-
-
-
-        </div>
+    <div class="jumbotron noFavorites">
+    <h1 class="centered">
+        Unfortunately, you currently have no favorites.
+        Go to the Infinity Scroll to find some wisdom you'd like to favorite!
+    </h1>
     </div>
 }
+@Html.Partial("ScrollItem", Model.Favorites)
+@foreach (var w in Model.Favorites)
+{
 
+    <button class="btn btn-default unfavoriteButton" id="@w.WisdomId">Unfavorite</button>
+}
 <style>
-    .scrollContainer {
-        padding: 5px;
-        border: 2px solid black;
-        border-radius: 10px;
-        display: block;
-        text-align: center;
-        height: 100%;
-        margin: 0 auto;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .contentrow {
-        width: 70%;
-        height: 100%;
-        display: inline-block;
-        text-align: center;
-        margin: auto;
-        justify-content: center;
-    }
-
-    .contentText {
-        font-size: larger;
-    }
-
-    .topRow {
-        height: 20%;
-    }
-
-    .bottomRow {
-        height: 20%;
-    }
-
-    .upvoteContainer {
-        top: 10px;
-        padding-left: 20px;
-        text-align: left;
-        margin: 0 auto;
-        display: block;
-    }
-
-    .author {
-        padding-right: 30px;
-        margin: 0px;
-        text-align: right;
-    }
-
-    .user {
-        text-align: left;
-        padding-left: 20px;
-    }
-
-    .authorText {
-        font-style: oblique;
-    }
-
-    .sourceText {
-        font-style: oblique;
-        margin: 0 auto;
-        padding: 0px;
+    .noFavorites {
+        border-radius: 25px;
+        background-image: linear-gradient(to bottom, #33ccff 10%, #6666ff 100%);
+        color: navajowhite;
     }
 </style>
-
-
-
-
 @section scripts {
     <script language="javascript" type="text/javascript">
         console.log("Yup it's checked");
         $(document).ready(function () {
+            $(".favoriteButton").removeClass("fa-heart-o");
+            $(".favoriteButton").addClass("fa");
+            $(".favoriteButton").addClass("fa-times");
             $(".upvote").click(function (e) {
                 var target = $(e.target);
                 var id = target.attr('id');
@@ -141,7 +56,7 @@
                         alert("Failed to upvote post");
                     });
             });
-            $(".unfavoriteButton").click(function (e) {
+            $(".favoriteButton").click(function (e) {
                 var target = $(e.target);
                 var id = target.attr('id');
                 console.log(id);
@@ -154,8 +69,7 @@
                             alert("Already Unfavorited ;) UwU");
                         }
                         else {
-                            alert('All done!');
-                            target.removeClass();
+
                             target.hide();
                         }
                     })

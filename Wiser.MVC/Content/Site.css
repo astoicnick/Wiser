@@ -2,12 +2,122 @@
     font-family: 'Source Serif Pro', serif;
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: antiquewhite;
+    padding-top: 0;
 }
-
+.navbar-brand {
+    font-family: Augustus;
+    font-size-adjust: 1.25;
+}
+.navGradient {
+    background-image: linear-gradient(to bottom, #99c2ff 0%, #b3d9ff 100%);
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
+    height: 100%;
+    border-radius: 40px;
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.scrollIcon {
+    color: deepskyblue;
+}
+.navbar-fixed-top{
+    margin-bottom: 20px;
+}
+.nav-text{
+    font-size: 18px;
+    color: rebeccapurple;
+}
+/*Body content*/
+.scrollContainer {
+    padding: 5px;
+    border: 3px solid white;
+    border-image: linear-gradient(to bottom, #33ccff 0%, #6666ff 100%) 1;
+    background-color: #e8effa;
+    /*border: 2px solid black;*/
+    border-radius: 10px;
+    display: block;
+    text-align: center;
+    height: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+.contentrow {
+    width: 70%;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    margin: auto;
+    justify-content: center;
+}
+
+.contentText {
+    font-size: larger;
+}
+
+.topRow {
+    height: 20%;
+}
+
+.bottomRow {
+    height: 20%;
+}
+
+.upvoteContainer {
+    height: 80%;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    padding-top: 22px;
+    padding-left: 20px;
+    text-align: left;
+    margin: 0 auto;
+    display: block;
+}
+
+.author {
+    padding-right: 30px;
+    margin: 0px auto;
+    padding-bottom: 0px;
+    text-align: right;
+}
+
+.user {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.authorText {
+    font-style: oblique;
+}
+footer{
+    text-align: center;
+}
+footer p{
+    margin-top: 20px;
+}
+#footIcons {
+    display: flex;
+    text-decoration: none;
+    list-style: none;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0px;
+    text-align: center;
+    align-items: center;
+}
+#footIcons a{
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.sourceText {
+    font-style: oblique;
+    margin: 0 auto;
+    padding: 0px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 

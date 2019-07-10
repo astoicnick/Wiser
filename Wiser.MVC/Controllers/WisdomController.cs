@@ -58,6 +58,8 @@ namespace Wiser.MVC.Controllers
         {
             _userId = User.Identity.GetUserId();
             _wisdomService = new WisdomService(_userId);
+            UserService userService = new UserService(_userId);
+            TempData["Owner"] = userService.GetUsers().First(u => u.UserId == User.Identity.GetUserId()).Name;
             return View(_wisdomService.GetWisdomList());
         }
         //Read Detail

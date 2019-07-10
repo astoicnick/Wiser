@@ -7,21 +7,25 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap" rel="stylesheet">
-
-
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap" rel="stylesheet">
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-fixed-top navGradient">
         <div class="container">
             <div class="navbar-header">
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Wiser", "Index", "Home", new { area = "" }, new { @class = "h1 navbar-brand display-1" })
             </div>
             <div class="navbar navbar-expand-lg">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Wisdom", "Index", "Wisdom")</li>
-                    <li>@Html.ActionLink("Author", "Index", "Author")</li>
-                    <li>@Html.ActionLink("Favorites","Index","Favorite")</li>
+                <ul class="nav navbar-nav nav-text">
+                    @*<li class="nav-item">@Html.ActionLink("Wisdom", "Index", "Wisdom",new { @class="fa fa-user nav-link"})</li>*@
+                    <li class="nav-item">@Html.ActionLink("Authors", "Index", "Author")</li>
+                    &nbsp;
+                    &nbsp;
+                    <li class="nav-item">@Html.ActionLink("Favorites", "Index", "Favorite")</li>
+                    &nbsp;
+                    &nbsp;
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -31,7 +35,13 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <div id="footIcons">
+                <a class="fa fa-4x fa-github" href="https://github.com/perrynicholas"></a>
+                <a class="fa fa-4x fa-youtube" href="https://www.youtube.com/channel/UC4PurZ6qtNNPqAX_U6JkXWQ?view_as=subscriber"></a>
+                <a class="fa fa-4x fa-linkedin" href="https://www.linkedin.com/in/nicholas-p-934180122/"></a>
+                <a class="fa fa-4x fa-mail-forward" href="mailto:founder@theperry.co"></a>
+            </div>
+            <p>&copy; @DateTime.Now.Year - Nicholas Perry</p>
         </footer>
     </div>
 
