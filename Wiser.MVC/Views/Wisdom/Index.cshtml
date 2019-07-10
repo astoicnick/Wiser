@@ -8,10 +8,22 @@
 {
     @:<h3 style="text-align: center;">Welcome back, <span class="usernameText"> @TempData["Owner"]</span></h3>
 }
-<p class="text-align: center;">
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <h3 class="create">
+        @Html.ActionLink("create", "Create")
+    </h3>
 @Html.Partial("ScrollItem")
+<style>
+    .create {
+        text-align: center;
+        font-family: Augustus;
+        margin: 0 auto;
+    }
+</style>
+<style>
+    .usernameText {
+        font-weight: bold;
+    }
+</style>
 @section scripts {
     <script language="javascript" type="text/javascript">
         console.log("Yup it's checked");
@@ -25,16 +37,15 @@
                 })
                     .done(function (r) {
                         if (r == false) {
+                            alert("Already upvoted this!");
                             setTimeout(function () {
                                 var alertTarget = $('#alertTarget');
                             }, 5000)
                         }
                         else {
-                            alert('${r} naniwa!');
                             target.removeClass();
-                            target.addClass("fa");
-                            target.addClass("fa-thumbs-up")
-                            target.hide();
+                            target.addClass("fa fa-thumbs-up upvote scrollIcon");
+                            console.log("Upvote worked");
                         }
                     })
                     .fail(function (r) {
@@ -58,9 +69,8 @@
                             })
                                 .done(function (r) {
                                     if (r == true) {
-                                        target.removeClass();
-                                        target.addClass("fa");
-                                        target.addClass("fa-heart-o");
+                                        target.removeClass("fa-heart-o");
+                                        target.addClass("fa fa-heart scrollIcon");
                                         console.log("Remove success");
                                     }
                                     else {
@@ -73,8 +83,7 @@
                         }
                         else {
                             target.removeClass();
-                            target.addClass("fa");
-                            target.addClass("fa-heart");
+                            target.addClass("fa fa-heart scrollIcon");
                             console.log(r);
                         }
                     })
