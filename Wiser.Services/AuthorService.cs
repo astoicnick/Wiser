@@ -73,6 +73,7 @@ namespace Wiser.Services
                     .Single(author => author.AuthorId == idToRetrieve);
                 var authorToReturn = new AuthorDetailItem()
                 {
+                    WisdomCount = query.WisdomCount,
                     AuthorId = query.AuthorId,
                     FirstName = query.FirstName,
                     LastName = query.LastName,
@@ -140,6 +141,7 @@ namespace Wiser.Services
                     .AuthorTable
                     .Select(a => new AuthorDetailItem()
                     {
+                        WisdomCount = a.WisdomCount,
                        AuthorId = a.AuthorId,
                        CreatedAt = a.CreatedAt,
                        FirstName = a.FirstName,

@@ -21,7 +21,7 @@ namespace Wiser.Services
         {
             _userId = userId;
         }
-        public bool AddFavorite(int id,string userId)
+        public bool AddFavorite(int id, string userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -71,7 +71,7 @@ namespace Wiser.Services
                     .Find(id);
                 return new UserDetailItem()
                 {
-                    
+
                     UserId = user.Id,
                     Name = user.FirstName + " " + user.LastName,
                     Contributions = ctx.WisdomTable.Where(w => w.UserId == user.Id).Select(a => new WisdomScrollItem()
@@ -111,13 +111,13 @@ namespace Wiser.Services
                     }).ToList(),
                 };
 
-                }
+            }
         }
         public List<WisdomFavoriteItem> GetFavorites()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = (List<WisdomFavoriteItem>) ctx
+                var query = (List<WisdomFavoriteItem>)ctx
                     .FavoriteTable
                     .Where(w => w.UserId == _userId)
                     .Select(w => new WisdomFavoriteItem()
@@ -161,7 +161,7 @@ namespace Wiser.Services
                     .Users
                     .Select(u => new UserScrollItem()
                     {
-                        Name = u.FirstName+" "+u.LastName,
+                        Name = u.FirstName + " " + u.LastName,
                         UserId = u.Id
                     }).ToList();
                 return listToReturn;
@@ -244,7 +244,7 @@ namespace Wiser.Services
                         UserId = u.Id,
                         //Role = u.Roles.ToString(),
                         Virtue = u.Virtue,
-                        Contributions = ctx.WisdomTable.Where(c=>c.UserId == u.Id).Select(con=>new WisdomScrollItem()
+                        Contributions = ctx.WisdomTable.Where(c => c.UserId == u.Id).Select(con => new WisdomScrollItem()
                         {
                             FirstName = con.User.FirstName,
                             LastName = con.User.LastName,
@@ -261,7 +261,7 @@ namespace Wiser.Services
                             Virtue = con.PostVirtue,
                             WisdomId = con.WisdomId
                         }).ToList(),
-                        Favorites = ctx.FavoriteTable.Where(f=>f.UserId == u.Id).Select(fav=> new WisdomScrollItem()
+                        Favorites = ctx.FavoriteTable.Where(f => f.UserId == u.Id).Select(fav => new WisdomScrollItem()
                         {
                             FirstName = fav.User.FirstName,
                             LastName = fav.User.LastName,
@@ -279,8 +279,34 @@ namespace Wiser.Services
                             WisdomId = fav.Wisdom.WisdomId
                         }).ToList(),
                     }).ToList();
-                return listToReturn.OrderByDescending(o=>o.Virtue).ToList();
+                return listToReturn.OrderByDescending(o => o.Virtue).ToList();
             };
+        }
+
+        public bool CheckUpvote(int id, string userId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var upvoteCheck = ctx.UpvotedTable.Where(u => u.UserId == userId && u.WisdomId == id);
+                if (upvoteCheck.Count() > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public bool CheckFavorite(int id, string userId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var favoriteCheck = ctx.FavoriteTable.Where(u => u.UserId == userId && u.WisdomId == id);
+                if (favoriteCheck.Count() > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
         }
     }
 }

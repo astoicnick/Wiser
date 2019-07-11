@@ -13,12 +13,13 @@
         {
             break;
         }
-        else {
+        else
+        {
             firstName += letter;
         }
     }
     @:<h3 style="text-align: center;">Welcome back, <span class="usernameText">@firstName</span></h3>
-    }
+}
 <h3 class="create">
     @Html.ActionLink("create", "Create")
 </h3>
@@ -36,55 +37,4 @@
     }
 </style>
 @section scripts {
-    <script language="javascript" type="text/javascript">
-        console.log("Yup it's checked");
-        $(document).ready(function () {
-            $(".upvote").click(function (e) {
-                var target = $(e.target);
-                var id = target.attr('id');
-                $.ajax({
-                    type: 'PUT',
-                    url: `/api/upvote/${id}`
-                })
-                    .done(function (r) {
-                        if (r == false) {
-                            target.removeClass();
-                            target.addClass("fa fa-thumbs-up scrollIcon");
-                        }
-                        else {
-                            target.removeClass();
-                            target.addClass("fa fa-thumbs-up scrollIcon");
-                        }
-                    })
-                    .fail(function (r) {
-                        alert("Failed to upvote post");
-                    });
-            });
-            $(".favoriteButton").click(function (e) {
-                var target = $(e.target);
-                var id = target.attr('id');
-                console.log(id);
-                $.ajax({
-                    type: 'POST',
-                    url: `/api/favorite/${id}`
-                })
-                    .done(function (r) {
-                        console.log(r);
-                        if (r == false) {
-                            target.removeClass();
-                            target.addClass("fa fa-heart scrollIcon");
-                        }
-                        else {
-                            target.removeClass();
-                            target.addClass("fa fa-heart scrollIcon");
-                            console.log(r);
-                        }
-                    })
-                    .fail(function (r) {
-                        alert("Failed to favorite post");
-                    });
-            });
-        });
-    </script>
-
 }

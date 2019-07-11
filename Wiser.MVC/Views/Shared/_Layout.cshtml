@@ -68,7 +68,7 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container-fluid body-content">
         @RenderBody()
         <hr />
         <footer>
@@ -84,6 +84,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+<script src="~/Scripts/Dynamic.js" type="text/javascript">
+</script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

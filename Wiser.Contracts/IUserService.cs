@@ -20,5 +20,7 @@ namespace Wiser.Contracts
         List<UserDetailItem> TopUsers();
         bool EditUser(UserEditItem userToEdit);
         UserEditItem GetEditItem(string userId);
+        bool CheckUpvote(int id, string userId);
+        bool CheckFavorite(int id, string userId);
     }
 }

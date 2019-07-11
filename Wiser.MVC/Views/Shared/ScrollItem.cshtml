@@ -3,7 +3,7 @@
 
 @foreach (var w in Model)
 {
-    <div class="container scrollContainer">
+    <div id="@w.WisdomId"class="container scrollContainer">
         <div class="row topRow">
             <div class="col-1 user">
                 <a href='@Url.Action($"Details/{w.UserId}","User")' class="fa fa-user scrollIcon"></a>
@@ -15,7 +15,6 @@
                     @Html.DisplayFor(modelItem => w.Content, new { @class = "contentText" })
                 </h3>
             </div>
-
         </div>
         <div class="row bottomRow">
             <div class="col-3 upvoteContainer">

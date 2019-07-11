@@ -54,5 +54,29 @@ namespace Wiser.MVC.Controllers
             }
             return false;
         }
+        [HttpGet]
+        [Route("checkfavorite/{id}")]
+        public bool CheckFavorite(int id)
+        {
+            _userId = User.Identity.GetUserId();
+            _userService = new UserService(_userId);
+            if (_userService.CheckFavorite(id, _userId))
+            {
+                return true;
+            }
+            return false;
+        }
+        [HttpGet]
+        [Route("checkupvote/{id}")]
+        public bool CheckUpvote(int id)
+        {
+            _userId = User.Identity.GetUserId();
+            _userService = new UserService(_userId);
+            if (_userService.CheckUpvote(id, _userId))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
