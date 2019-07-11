@@ -14,6 +14,5 @@ namespace Wiser.Contracts
         WisdomDetailItem RetrieveWisdomById(int wisdomId);
         bool UpdateWisdom(WisdomUpdateItem wisdomToUpdate);
         List<WisdomScrollItem> GetWisdomList();
-       
     }
 }

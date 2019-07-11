@@ -319,6 +319,8 @@
     <Content Include="Views\User\UserContributions.cshtml" />
     <Content Include="Views\Shared\AuthorScrollItem.cshtml" />
     <Content Include="Views\Shared\_ScrollAuthorModal.cshtml" />
+    <Content Include="Views\Wisdom\Manage.cshtml" />
+    <Content Include="Views\Shared\ScrollEditItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

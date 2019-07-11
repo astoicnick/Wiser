@@ -102,7 +102,16 @@ namespace Wiser.MVC.Controllers
             }
             return View(wisdomToUpdate);
         }
-
+        //Manage Wisdom
+        public ActionResult Manage()
+        {
+            _wisdomService = new WisdomService(User.Identity.GetUserId());
+            if (_wisdomService.GetWisdomList().Where(w => w.UserId == User.Identity.GetUserId()) == null)
+            {
+                return RedirectToAction("Index", "Wisdom");
+            }
+            return View(_wisdomService.GetWisdomList().Where(w=>w.UserId == User.Identity.GetUserId()));
+        }
         //Delete general
         //GET: Wisdom/Delete/{id}
         public ActionResult Delete(int? id)

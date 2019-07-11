@@ -6,7 +6,7 @@
     <div id="@w.WisdomId"class="container scrollContainer">
         <div class="row topRow">
             <div class="col-1 user">
-                <a href='@Url.Action($"Details/{w.UserId}","User")' class="fa fa-user scrollIcon"></a>
+                <a href='@Url.Action($"Details/{w.UserId}","User")' class="fa fa-user scrollIcon" title="Check out the User behind this!"></a>
             </div>
         </div>
         <div class="row contentrow">
@@ -18,10 +18,10 @@
         </div>
         <div class="row bottomRow">
             <div class="col-3 upvoteContainer">
-                <i id="@w.WisdomId" class="fa fa-thumbs-o-up upvote scrollIcon" aria-hidden="true"></i>
+                <i id="@w.WisdomId" class="fa fa-thumbs-o-up  upvote scrollIcon" aria-hidden="true" title="Upvote this wisdom!"></i>
                 &nbsp;
                 &nbsp;
-                <i class="favoriteButton fa fa-heart-o scrollIcon" id="@w.WisdomId"></i>
+                <i class="favoriteButton fa fa-star-o scrollIcon" id="@w.WisdomId" title="Favorite this wisdom!"></i>
             </div>
             <div class=" col-9 author">
                 <p class="sourceText">

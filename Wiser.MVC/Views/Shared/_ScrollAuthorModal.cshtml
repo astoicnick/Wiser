@@ -19,7 +19,28 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h1>@Html.DisplayFor(w => w.FirstName)</h1>
+                <div id="@Model.AuthorId" class="container-fluid scrollContainer">
+                    <div class="row topRow">
+                        <div class="col-1 user">
+                            <a href='@Url.Action($"Details/{Model.AuthorId}","Author")' class="fa fa-user scrollIcon"></a>
+                        </div>
+                    </div>
+                    <div class="row contentrow">
+                        <div class=" col-12 content">
+                            <h3 class="display-7 contentText">
+                                @Model.FirstName @Model.LastName
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="row bottomRow">
+                        <div class="col-5 bottomColumns">
+                            Virtue - @Model.Virtue
+                        </div>
+                        <div class="col-7 bottomColumns">
+                            Wisdom Count - @Model.WisdomCount
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

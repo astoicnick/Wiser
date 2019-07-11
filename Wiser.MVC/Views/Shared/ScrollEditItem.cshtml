@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Wiser.Models.Wisdom.WisdomScrollItem>
+@Styles.Render("~/Content/css")
+
+@foreach (var w in Model)
+{
+    <div id="@w.WisdomId" class="container scrollContainer">
+        <div class="row topRow">
+            <div class="col-1 user">
+                <a href='@Url.Action($"Details/{w.UserId}","User")' class="fa fa-user scrollIcon" title="Check out the User behind this!"></a>
+            </div>
+        </div>
+        <div class="row contentrow">
+            <div class=" col-12 content">
+                <h3 class="display-7 contentText">
+                    @Html.DisplayFor(modelItem => w.Content, new { @class = "contentText" })
+                </h3>
+            </div>
+        </div>
+        <div class="row bottomRow">
+            <div class="col-3 upvoteContainer">
+                <a href="@Url.Action($"Edit/{w.WisdomId}","Wisdom")">
+                    <i id="@w.WisdomId" class="fa fa-pencil edit scrollIcon" aria-hidden="true" title="Edit this wisdom"></i>
+                </a>
+                &nbsp;
+                &nbsp;
+                <i class="delete fa fa-times scrollIcon" id="@w.WisdomId" title="Delete this wisdom"></i>
+            </div>
+            <div class=" col-9 author">
+                <p class="sourceText">
+                    @Html.DisplayFor(modelItem => w.Source, new { @class = "sourceText" })
+                </p>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                @Html.ActionLink(w.ScrollAuthor.AuthorName, $"Details/{w.ScrollAuthor.AuthorId}", "Author", null, new { @class = "authorText" })
+            </div>
+
+
+
+        </div>
+    </div>
+}

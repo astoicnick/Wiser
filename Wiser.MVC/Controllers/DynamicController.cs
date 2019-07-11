@@ -13,7 +13,6 @@ namespace Wiser.MVC.Controllers
     [Authorize]
     public class DynamicController : ApiController
     {
-
         private WisdomService _wisdomService;
         private UserService _userService;
         private string _userId;
@@ -74,6 +73,16 @@ namespace Wiser.MVC.Controllers
             _userService = new UserService(_userId);
             if (_userService.CheckUpvote(id, _userId))
             {
+                return true;
+            }
+            return false;
+        }
+        [HttpDelete]
+        [Route("remove/{id}")]
+        public bool Delete(int id)
+        {
+            _wisdomService = new WisdomService(User.Identity.GetUserId());
+            if (_wisdomService.RemoveWisdom(_wisdomService.DetailToUpdateItem(_wisdomService.RetrieveWisdomById(id)))){
                 return true;
             }
             return false;

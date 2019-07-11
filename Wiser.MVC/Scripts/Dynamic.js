@@ -1,14 +1,5 @@
 ﻿console.log("Yup it's checked");
 $(document).ready(function (a) {
-        //$(".scrollContainer").click(function () {
-        //    console.log("yea");
-        //    var id = $(".scrollModal").attr('id');
-        //    var target = $(`.scrollModal#${id}`);
-        //    console.log(target);
-        //    target.removeClass();
-        //    target.addClass("scrollModal modal fade show");
-        //    target.css("display", "block");
-        //});
     $('.upvote').each(function (i) {
         id = i;
         $.ajax({
@@ -23,7 +14,7 @@ $(document).ready(function (a) {
 
                 }
             })
-    })
+    });
     $('.favoriteButton').each(function (i) {
         id = i;
         $.ajax({
@@ -34,7 +25,7 @@ $(document).ready(function (a) {
                 if (r == true) {
                     target = $(`#${i}.favoriteButton`);
                     target.removeClass();
-                    target.addClass("fa fa-heart scrollIcon");
+                    target.addClass("fa fa-star scrollIcon");
                 }
             });
     });
@@ -74,16 +65,32 @@ $(document).ready(function (a) {
                 if (r == false) {
                     console.log(r);
                     target.removeClass();
-                    target.addClass("fa fa-heart scrollIcon");
+                    target.addClass("fa fa-star scrollIcon");
                 }
                 else {
                     console.log(r);
                     target.removeClass();
-                    target.addClass("fa fa-heart scrollIcon");
+                    target.addClass("fa fa-star scrollIcon");
                 }
             })
             .fail(function (r) {
                 alert("Failed to favorite post");
+            });
+    });
+    $(".delete").click(function (e) {
+        var target = $(".delete");
+        var id = target.attr('id');
+        $.ajax({
+            type: 'DELETE',
+            url: `/api/remove/${id}`
+        })
+            .done(function (r) {
+                if (r == true) {
+                    target.hide();
+                }
+                else {
+                    alert("You are not the owner of this wisdom, henceforth you cannot remove it. Good day.");
+                }
             });
     });
 });
