@@ -1,0 +1,129 @@
+﻿@model IEnumerable<Wiser.Models.Wisdom.WisdomScrollItem>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IsUpvoted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WisdomId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Source)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Virtue)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsUpvoted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WisdomId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Source)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Virtue)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
+@section scripts {
+    <script language="javascript" type="text/javascript">
+        console.log("Yup it's checked");
+        $(document).ready(function () {
+            $(".upvote").click(function (e) {
+                var target = $(e.target);
+                var id = target.attr('id');
+                $.ajax({
+                    type: 'PUT',
+                    url: `/api/upvote/${id}`
+                })
+                    .done(function (r) {
+                        if (r == false) {
+                            target.removeClass();
+                            target.addClass("fa fa-thumbs-up scrollIcon");
+                        }
+                        else {
+                            target.removeClass();
+                            target.addClass("fa fa-thumbs-up scrollIcon");
+                        }
+                    })
+                    .fail(function (r) {
+                        alert("Failed to upvote post");
+                    });
+            });
+            $(".favoriteButton").click(function (e) {
+                var target = $(e.target);
+                var id = target.attr('id');
+                console.log(id);
+                $.ajax({
+                    type: 'POST',
+                    url: `/api/favorite/${id}`
+                })
+                    .done(function (r) {
+                        console.log(r);
+                        if (r == false) {
+                            target.removeClass();
+                            target.addClass("fa fa-heart scrollIcon");
+                        }
+                        else {
+                            target.removeClass();
+                            target.addClass("fa fa-heart scrollIcon");
+                            console.log(r);
+                        }
+                    })
+                    .fail(function (r) {
+                        alert("Failed to favorite post");
+                    });
+            });
+        });
+    </script>
+
+}

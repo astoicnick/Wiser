@@ -313,6 +313,9 @@
     <Content Include="Views\Wisdom\Delete.cshtml" />
     <Content Include="Views\Shared\ScrollItem.cshtml" />
     <Content Include="Views\Favorite\Index.cshtml" />
+    <Content Include="Views\Author\HallOfFame.cshtml" />
+    <Content Include="Views\User\TopUsers.cshtml" />
+    <Content Include="Views\User\UserContributions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,7 +15,7 @@ namespace Wiser.Data
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FullName { get; set; }
-        public DateTime CreatedAt => DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; }
         public int Virtue { get; set; } = 0;
         public int WisdomCount { get; set; }
 

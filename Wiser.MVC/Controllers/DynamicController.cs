@@ -10,6 +10,7 @@ using Wiser.Services;
 namespace Wiser.MVC.Controllers
 {
     [RoutePrefix("api")]
+    [Authorize]
     public class DynamicController : ApiController
     {
 
@@ -33,9 +34,9 @@ namespace Wiser.MVC.Controllers
         [Route("Favorite/{id}")]
         public bool Favorite(int id)
         {
-            var userId = User.Identity.GetUserId();
-            var userService = new UserService(userId);
-            if (userService.AddFavorite(id))
+            _userId = User.Identity.GetUserId();
+            var userService = new UserService(_userId);
+            if (userService.AddFavorite(id, _userId))
             {
                 return true;
             }

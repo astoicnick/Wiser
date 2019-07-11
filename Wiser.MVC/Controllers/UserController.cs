@@ -18,12 +18,26 @@ namespace Wiser.MVC.Controllers
         private UserService _userService;
         //Read general
         // GET: User
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             _userService = new UserService(User.Identity.GetUserId());
             var listOfUsers = _userService.GetUsers();
             return View(listOfUsers);
+        }
+
+        //Public view of Users
+        [Authorize]
+        public ActionResult TopUsers()
+        {
+            _userService = new UserService(User.Identity.GetUserId());
+            return View(_userService.TopUsers());
+        }
+        //Get just contributions
+        public ActionResult UserContributions()
+        {
+            _userService = new UserService(User.Identity.GetUserId());
+            return View(_userService.GetContributions());
         }
         //Read Details
         //GET: User/{id}

@@ -1,13 +1,27 @@
 ﻿body {
-    font-family: 'Source Serif Pro', serif;
+    font-family: 'Libre Baskerville', serif;
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: antiquewhite;
+    background-color: whitesmoke;
     padding-top: 0;
+}
+.navbar-header {
+    margin: 0 auto;
+    align-content: center;
+    justify-content: center;
+}
+#navbar-toggle{
+    color: dodgerblue;
+    background-color: antiquewhite;
+    margin: 0;
+    padding: 3px 7px 3px 7px;
 }
 .navbar-brand {
     font-family: Augustus;
     font-size-adjust: 1.25;
+}
+.dropToggle{
+    padding-right: 15px;
 }
 .navGradient {
     background-image: linear-gradient(to bottom, #99c2ff 0%, #b3d9ff 100%);
@@ -28,14 +42,19 @@
 }
 .nav-text{
     font-size: 18px;
-    color: rebeccapurple;
-}
+    color: white;
+   }
 /*Body content*/
 .scrollContainer {
     padding: 5px;
-    border: 3px solid white;
-    border-image: linear-gradient(to bottom, #33ccff 0%, #6666ff 100%) 1;
-    background-color: #e8effa;
+    /*border: 3px solid white;*/
+    /*background-color: #e8effa;*/
+    border: double 1px transparent;
+    border-radius: 80px;
+    background-image: linear-gradient(navajowhite, navajowhite), radial-gradient(circle at top left, #33ccff,#6666ff);
+    /*border-image: linear-gradient(to bottom, #33ccff 0%, #6666ff 100%) 1;*/
+    background-origin: border-box;
+    background-clip: content-box, border-box;
     /*border: 2px solid black;*/
     border-radius: 10px;
     display: block;
@@ -44,20 +63,16 @@
     margin: 0 auto;
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 80%;
+    width: 100%;
 }
 
 .contentrow {
-    width: 70%;
-    height: 100%;
-    display: inline-block;
-    text-align: center;
-    margin: auto;
-    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .contentText {
-    font-size: larger;
+    font-family: Augustus;
 }
 
 .topRow {

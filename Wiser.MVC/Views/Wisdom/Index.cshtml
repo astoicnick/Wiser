@@ -6,11 +6,22 @@
 }
 @if (User.Identity.IsAuthenticated)
 {
-    @:<h3 style="text-align: center;">Welcome back, <span class="usernameText"> @TempData["Owner"]</span></h3>
-}
-    <h3 class="create">
-        @Html.ActionLink("create", "Create")
-    </h3>
+    var firstName = "";
+    foreach (var letter in TempData["Owner"].ToString())
+    {
+        if (letter.ToString() == " ")
+        {
+            break;
+        }
+        else {
+            firstName += letter;
+        }
+    }
+    @:<h3 style="text-align: center;">Welcome back, <span class="usernameText">@firstName</span></h3>
+    }
+<h3 class="create">
+    @Html.ActionLink("create", "Create")
+</h3>
 @Html.Partial("ScrollItem")
 <style>
     .create {
@@ -37,15 +48,12 @@
                 })
                     .done(function (r) {
                         if (r == false) {
-                            alert("Already upvoted this!");
-                            setTimeout(function () {
-                                var alertTarget = $('#alertTarget');
-                            }, 5000)
+                            target.removeClass();
+                            target.addClass("fa fa-thumbs-up scrollIcon");
                         }
                         else {
                             target.removeClass();
-                            target.addClass("fa fa-thumbs-up upvote scrollIcon");
-                            console.log("Upvote worked");
+                            target.addClass("fa fa-thumbs-up scrollIcon");
                         }
                     })
                     .fail(function (r) {
@@ -63,23 +71,8 @@
                     .done(function (r) {
                         console.log(r);
                         if (r == false) {
-                            $.ajax({
-                                type: 'DELETE',
-                                url: `/api/rmfavorite/${id}`
-                            })
-                                .done(function (r) {
-                                    if (r == true) {
-                                        target.removeClass("fa-heart-o");
-                                        target.addClass("fa fa-heart scrollIcon");
-                                        console.log("Remove success");
-                                    }
-                                    else {
-                                        console.log("Remove failed");
-                                    }
-                                })
-                                .fail(function (r) {
-                                    console.log("shit");
-                                })
+                            target.removeClass();
+                            target.addClass("fa fa-heart scrollIcon");
                         }
                         else {
                             target.removeClass();

@@ -39,7 +39,8 @@ namespace Wiser.Services
                         FirstName = wisdomToCreate.AuthorFirstName,
                         LastName = wisdomToCreate.AuthorLastName,
                         WisdomCount = 1,
-                        Virtue = 0
+                        Virtue = 0,
+                        CreatedAt = DateTime.Now
                     };
                     newAuthor.FullName = $"{newAuthor.FirstName} {newAuthor.LastName}";
                     ctx.AuthorTable.Add(newAuthor);

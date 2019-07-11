@@ -11,12 +11,13 @@ namespace Wiser.Contracts
     public interface IUserService
     {
         bool Upvote(int wisdomId);
-        bool AddFavorite(int id);
+        bool AddFavorite(int id, string userId);
         bool RemoveFavorite(int id);
         List<WisdomFavoriteItem> GetFavorites();
-        List<WisdomContributionItem> GetContributions();
+        List<WisdomScrollItem> GetContributions();
         bool RemoveUser(string id);
         List<UserScrollItem> GetUsers();
+        List<UserDetailItem> TopUsers();
         bool EditUser(UserEditItem userToEdit);
         UserEditItem GetEditItem(string userId);
     }

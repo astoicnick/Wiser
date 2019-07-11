@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wiser.Contracts;
-using Wiser.Contracts;
 using Wiser.Data;
 using Wiser.Models;
 using Wiser.Models.Author;
@@ -22,12 +21,12 @@ namespace Wiser.Services
         {
             _userId = userId;
         }
-        public bool AddFavorite(int id)
+        public bool AddFavorite(int id,string userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var userCheck = ctx.FavoriteTable.Where(u => u.UserId == _userId && u.WisdomId == id);
-                if (userCheck.Count() > 0)
+                var userCheck = ctx.FavoriteTable.Where(u => u.UserId == userId && u.WisdomId == id).Count();
+                if (userCheck > 0)
                 {
                     return false;
                 }
@@ -36,27 +35,30 @@ namespace Wiser.Services
                     UserId = _userId,
                     WisdomId = id
                 });
-                // var saveCount == ctx.SaveChanges();
+                ctx.SaveChanges();
+                var saveCount = ctx.SaveChanges();
                 return ctx.SaveChanges() == 1;
             }
         }
-        public List<WisdomContributionItem> GetContributions()
+        public List<WisdomScrollItem> GetContributions()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = (List<WisdomContributionItem>)ctx
+                var query = ctx
                     .WisdomTable
                     .Where(w => w.UserId == _userId)
-                    .Select(w => new WisdomContributionItem()
+                    .Select(w => new WisdomScrollItem()
                     {
-                        AuthorId = w.AuthorId,
-                        AuthorName = w.Author.FullName,
                         Content = w.Content,
-                        CreatedAt = w.CreatedAt,
                         Source = w.Source,
                         WisdomId = w.WisdomId,
-                        WisdomGenre = w.WisdomGenre
-                    });
+                        ScrollAuthor = new AuthorScrollItem()
+                        {
+                            AuthorId = w.Author.AuthorId,
+                            AuthorName = w.Author.FullName,
+                            WisdomCount = w.Author.WisdomCount
+                        }
+                    }).ToList();
                 return query;
             }
         }
@@ -135,7 +137,7 @@ namespace Wiser.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var favoriteToRemove = ctx.FavoriteTable.Single(w => w.WisdomId == id && w.UserId == _userId);
+                var favoriteToRemove = ctx.FavoriteTable.First(w => w.WisdomId == id && w.UserId == _userId);
                 ctx.FavoriteTable.Remove(favoriteToRemove);
                 return ctx.SaveChanges() == 1;
             }
@@ -227,6 +229,58 @@ namespace Wiser.Services
                 int virtuePostUpdate = (int)(wisdomToUpvote.User.Virtue) + (int)(wisdomToUpvote.Author.Virtue) + (int)(wisdomToUpvote.PostVirtue);
                 return virtuePreUpdate != virtuePostUpdate;
             }
+        }
+
+        public List<UserDetailItem> TopUsers()
+        {
+            var listToReturn = new List<UserDetailItem>();
+            using (var ctx = new ApplicationDbContext())
+            {
+                listToReturn = ctx
+                    .Users
+                    .Select(u => new UserDetailItem()
+                    {
+                        Name = u.FirstName + " " + u.LastName,
+                        UserId = u.Id,
+                        //Role = u.Roles.ToString(),
+                        Virtue = u.Virtue,
+                        Contributions = ctx.WisdomTable.Where(c=>c.UserId == u.Id).Select(con=>new WisdomScrollItem()
+                        {
+                            FirstName = con.User.FirstName,
+                            LastName = con.User.LastName,
+                            ScrollAuthor = new AuthorScrollItem()
+                            {
+                                AuthorId = con.AuthorId,
+                                AuthorName = con.Author.FullName,
+                                WisdomCount = con.Author.WisdomCount
+                            },
+                            Content = con.Content,
+                            IsUpvoted = con.IsUpvoted,
+                            Source = con.Source,
+                            UserId = con.UserId,
+                            Virtue = con.PostVirtue,
+                            WisdomId = con.WisdomId
+                        }).ToList(),
+                        Favorites = ctx.FavoriteTable.Where(f=>f.UserId == u.Id).Select(fav=> new WisdomScrollItem()
+                        {
+                            FirstName = fav.User.FirstName,
+                            LastName = fav.User.LastName,
+                            ScrollAuthor = new AuthorScrollItem()
+                            {
+                                AuthorId = fav.Wisdom.Author.AuthorId,
+                                AuthorName = fav.Wisdom.Author.FullName,
+                                WisdomCount = fav.Wisdom.Author.WisdomCount
+                            },
+                            Content = fav.Wisdom.Content,
+                            IsUpvoted = fav.Wisdom.IsUpvoted,
+                            Source = fav.Wisdom.Source,
+                            UserId = fav.Wisdom.UserId,
+                            Virtue = fav.Wisdom.PostVirtue,
+                            WisdomId = fav.Wisdom.WisdomId
+                        }).ToList(),
+                    }).ToList();
+                return listToReturn.OrderByDescending(o=>o.Virtue).ToList();
+            };
         }
     }
 }

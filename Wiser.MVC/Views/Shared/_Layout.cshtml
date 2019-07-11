@@ -7,7 +7,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 </head>
@@ -17,17 +17,54 @@
             <div class="navbar-header">
                 @Html.ActionLink("Wiser", "Index", "Home", new { area = "" }, new { @class = "h1 navbar-brand display-1" })
             </div>
-            <div class="navbar navbar-expand-lg">
-                <ul class="nav navbar-nav nav-text">
-                    @*<li class="nav-item">@Html.ActionLink("Wisdom", "Index", "Wisdom",new { @class="fa fa-user nav-link"})</li>*@
-                    <li class="nav-item">@Html.ActionLink("Authors", "Index", "Author")</li>
-                    &nbsp;
-                    &nbsp;
-                    <li class="nav-item">@Html.ActionLink("Favorites", "Index", "Favorite")</li>
-                    &nbsp;
-                    &nbsp;
-                </ul>
-                @Html.Partial("_LoginPartial")
+            <button id="navbar-toggle" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarWrapper" aria-controls="navbarWrapper" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars fa-2x"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarWrapper">
+                <div class="navbar navbar-expand-lg">
+                    <ul class="nav navbar-nav nav-text">
+                        @*<li class="nav-item">@Html.ActionLink("Wisdom", "Index", "Wisdom",new { @class="fa fa-user nav-link"})</li>*@
+                        <li class="nav-item dropdown dropToggle nav-text">
+                            <a class="dropdown-toggle nav-text" href="#" id="dropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Wisdom
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropDown">
+                                <a class="dropdown-item" href="@Url.Action("Create","Wisdom")">Create Wisdom</a>
+                                <a class="dropdown-item" href="@Url.Action("Index","Author")">Search by Author</a>
+                                <a class="dropdown-item" href="@Url.Action("TopUsers","User")">Search by User</a>
+                            </div>
+                        </li>
+                        @*<li class="nav-item">@Html.ActionLink("Authors", "Index", "Author")</li>*@
+                        <li class="nav-item dropdown dropToggle nav-text">
+                            <a class="dropdown-toggle nav-text" href="#" id="dropDownAuthor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Authors
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropDownAuthor">
+                                @* Set up  *@
+                                <a class="dropdown-item" href="@Url.Action($"HallOfFame","Author")">Top Authors</a>
+                                @* Modify author index and copy so that user can view all authors taht they have favorite wisdom with *@
+                                <a class="dropdown-item" href="@Url.Action("Author","Favorites")">Favorite Authors</a>
+                                <a class="dropdown-item" href="@Url.Action("Index","Author")">All Authors</a>
+                            </div>
+                        </li>
+                        &nbsp;
+                        &nbsp;
+                        <li class="nav-item dropdown dropToggle nav-text">
+                            <a class="dropdown-toggle nav-text" href="#" id="dropDownAuthor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Favorites
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropDownAuthor">
+                                @* Set up  *@
+                                <a class="dropdown-item" href="@Url.Action("Index","Favorite")">Favorite Wisdom</a>
+                                <a class="dropdown-item" href="@Url.Action("Index","Favorite")">Favorite Authors</a>
+
+                            </div>
+                        </li>
+                        &nbsp;
+                        &nbsp;
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
         </div>
     </div>

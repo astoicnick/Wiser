@@ -15,5 +15,6 @@ namespace Wiser.Contracts
         bool UpdateAuthor(AuthorUpdateItem authorToUpdate);
         List<AuthorScrollItem> GetAuthors();
         bool DeleteAuthor(AuthorUpdateItem authorToDelete);
+        List<AuthorDetailItem> GetDetailAuthors();
     }
 }

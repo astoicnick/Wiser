@@ -48,6 +48,14 @@ namespace Wiser.MVC.Controllers
         {
             return DetailNullChecker(id);
         }
+        //Hall of fame(Top 3 Authors then the rest sorted by virtue)
+        public ActionResult HallOfFame()
+        {
+            _authorService = new AuthorService();
+            var authors = _authorService.GetDetailAuthors();
+            return View(authors);
+        }
+
 
         //Edit general
         //GET: Author/Edit/{id}

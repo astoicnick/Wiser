@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Wiser.Models.Wisdom.WisdomScrollItem>
+    @Styles.Render("~/Content/css")
 
 @foreach (var w in Model)
 {
@@ -10,9 +11,9 @@
         </div>
         <div class="row contentrow">
             <div class=" col-12 content">
-                <h1 class="display-5">
+                <h3 class="display-7 contentText">
                     @Html.DisplayFor(modelItem => w.Content, new { @class = "contentText" })
-                </h1>
+                </h3>
             </div>
 
         </div>
@@ -22,7 +23,6 @@
                 &nbsp;
                 &nbsp;
                 <i class="favoriteButton fa fa-heart-o scrollIcon" id="@w.WisdomId"></i>
-                <div id="alert"></div>
             </div>
             <div class=" col-9 author">
                 <p class="sourceText">
@@ -42,75 +42,3 @@
         </div>
     </div>
 }
-
-<style>
-    .scrollContainer {
-        padding: 5px;
-         border: 3px solid white;
-  border-image: linear-gradient(to bottom, #33ccff 0%, #6666ff 100%) 1;
-  background-color:#e8effa;
-        /*border: 2px solid black;*/
-        border-radius: 10px;
-        display: block;
-        text-align: center;
-        height: 100%;
-        margin: 0 auto;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        width: 80%;
-    }
-
-    .contentrow {
-        width: 70%;
-        height: 100%;
-        display: inline-block;
-        text-align: center;
-        margin: auto;
-        justify-content: center;
-    }
-
-    .contentText {
-        font-size: larger;
-    }
-
-    .topRow {
-        height: 20%;
-    }
-
-    .bottomRow {
-        height: 20%;
-    }
-
-    .upvoteContainer {
-        height: 80%;
-        padding-bottom: 0px;
-        margin-bottom: 0px;
-        padding-top: 22px;
-        padding-left: 20px;
-        text-align: left;
-        margin: 0 auto;
-        display: block;
-    }
-
-    .author {
-        padding-right: 30px;
-        margin: 0px auto;
-        padding-bottom: 0px;
-        text-align: right;
-    }
-
-    .user {
-        text-align: left;
-        padding-left: 20px;
-    }
-
-    .authorText {
-        font-style: oblique;
-    }
-
-    .sourceText {
-        font-style: oblique;
-        margin: 0 auto;
-        padding: 0px;
-    }
-</style>

@@ -6,15 +6,22 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right nav-text">
-        <li>
-            <a href='@Url.Action($"Edit/{User.Identity.GetUserId()}","User")' class=" nav-text">Account</a>
-            <span class="nav-text">@*@Html.ActionLink("Account", $"Edit/{User.Identity.GetUserId()}", "User")*@</span>
-        </li>
-        &nbsp;
-        &nbsp;
-        <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="nav-text">Logout</span></a></li>
-    </ul>
+<ul class="nav navbar-nav navbar-right nav-text">
+    <li class="nav-item dropdown dropToggle">
+        <a class="dropdown-toggle nav-text" href="#" id="dropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            You
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropDown">
+            <a class="dropdown-item" href="@Url.Action($"Edit/{User.Identity.GetUserId()}","User")">Edit Profile</a>
+            <a class="dropdown-item" href="@Url.Action($"Details/{User.Identity.GetUserId()}","User")">View Profile </a>
+            <a class="dropdown-item" href="@Url.Action($"UserContributions/{User.Identity.GetUserId()}","User")">Your Wisdom</a>
+        </div>
+    </li>
+    <span class="nav-text">@*@Html.ActionLink("Account", $"Edit/{User.Identity.GetUserId()}", "User")*@</span>
+    &nbsp;
+    &nbsp;
+    <li><a class="nav-text" href="javascript:document.getElementById('logoutForm').submit()">@*<span class="nav-text">*@Logout@*</span>*@</a></li>
+</ul>
     }
 }
 else
