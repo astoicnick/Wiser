@@ -61,7 +61,7 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm(Model)) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

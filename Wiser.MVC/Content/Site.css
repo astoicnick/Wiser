@@ -20,11 +20,18 @@
     font-family: Augustus;
     font-size-adjust: 1.25;
 }
+.navbar-nav{
+    width: 100%;
+}
 .dropToggle{
-    padding-right: 15px;
+    padding-right: 5px;
 }
 .navGradient {
     background-image: linear-gradient(to bottom, #99c2ff 0%, #b3d9ff 100%);
+}
+#logoutForm{
+    width: 100%;
+
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {

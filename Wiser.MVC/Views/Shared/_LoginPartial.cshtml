@@ -2,11 +2,7 @@
 <link href="~/Content/Site.css" rel="stylesheet" />
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
 
-<ul class="nav navbar-nav navbar-right nav-text">
     <li class="nav-item dropdown dropToggle">
         <a class="dropdown-toggle nav-text" href="#" id="dropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             You
@@ -17,17 +13,18 @@
             <a class="dropdown-item" href="@Url.Action($"UserContributions/{User.Identity.GetUserId()}","User")">Your Wisdom</a>
         </div>
     </li>
-    <span class="nav-text">@*@Html.ActionLink("Account", $"Edit/{User.Identity.GetUserId()}", "User")*@</span>
-    &nbsp;
-    &nbsp;
-    <li><a class="nav-text" href="javascript:document.getElementById('logoutForm').submit()">@*<span class="nav-text">*@Logout@*</span>*@</a></li>
-</ul>
+    @:&nbsp;
+    <li class="nav-item"><a class="nav-text" href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
     }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class="nav-link nav-text" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class="nav-link nav-text" })</li>
-    </ul>
+    <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-text" })</li>
+    @:&nbsp;
+    @:&nbsp;
+
+    <li class="nav-item">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-text" })</li>
 }

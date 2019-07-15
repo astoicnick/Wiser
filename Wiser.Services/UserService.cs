@@ -147,8 +147,16 @@ namespace Wiser.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Users.Remove(ctx.Users.Find(id));
-                return ctx.SaveChanges() == 1;
+                var user = ctx.Users.Find(id);
+                var wisdomToRemove = ctx.WisdomTable.Where(w => w.UserId == id);
+                foreach (var wisdom in wisdomToRemove)
+                {
+                    ctx.WisdomTable.Remove(wisdom);
+                }
+                ctx.Users.Remove(user);
+                ctx.SaveChanges();
+                var saveCount = ctx.SaveChanges();
+                return saveCount == ctx.SaveChanges();
             }
         }
 
@@ -162,7 +170,8 @@ namespace Wiser.Services
                     .Select(u => new UserScrollItem()
                     {
                         Name = u.FirstName + " " + u.LastName,
-                        UserId = u.Id
+                        UserId = u.Id,
+                        Virtue = u.Virtue
                     }).ToList();
                 return listToReturn;
             };

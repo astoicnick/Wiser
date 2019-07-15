@@ -62,6 +62,28 @@ namespace Wiser.MVC.Controllers
             TempData["Owner"] = userService.GetUsers().First(u => u.UserId == User.Identity.GetUserId()).Name;
             return View(_wisdomService.GetWisdomList());
         }
+        //Hall of fame
+        //GET: Wisdom/HallOfFame
+        public ActionResult HallOfFame()
+        {
+            _wisdomService = new WisdomService(User.Identity.GetUserId());
+            var wisdomSorted = _wisdomService.GetWisdomList().OrderByDescending(w => w.Virtue).ToList();
+            return View(wisdomSorted);
+        }
+        //View by User
+        //GET: Wisdom/User
+        [ActionName("User")]
+        public ActionResult ViewByUser()
+        {
+            return View(new UserService(User.Identity.GetUserId()).TopUsers().OrderBy(u=>u.Name).ToList());
+        }
+        //View by Author
+        //GET: Wisdom/Author
+        [ActionName("Author")]
+        public ActionResult ViewByAuthor()
+        {
+            return View(new AuthorService().GetDetailAuthors().OrderBy(a=>a.FirstName).ToList());
+        }
         //Read Detail
         //GET: Wisdom/{id}
         public ActionResult Details(int id)

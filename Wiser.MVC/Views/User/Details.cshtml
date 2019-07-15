@@ -68,13 +68,16 @@
             </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Favorites)
+            <a class="fa fa-caret-down" data-toggle="collapse" data-target="#favoriteCollapse" aria-expanded="true" aria-controls="contributionCollapse"></a>
         </dt>
         <dd>
-        @if (User.Identity.GetUserId() == Model.UserId)
-        {
-            @Html.Partial("ScrollItem", Model.Favorites)
-
-        }</dd>
+            @if (User.Identity.GetUserId() == Model.UserId)
+            {
+                <div id="favoriteCollapse" class="collapse">
+                    @Html.Partial("ScrollItem", Model.Favorites)
+                    </div>
+                    }
+            </dd>
     </dl>
 </div>
 <p>

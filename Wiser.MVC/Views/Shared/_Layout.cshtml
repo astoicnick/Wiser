@@ -21,9 +21,8 @@
                 <i class="fa fa-bars fa-2x"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarWrapper">
-                <div class="navbar navbar-expand-lg">
+                <div class="navbar navbar-expand-xl">
                     <ul class="nav navbar-nav nav-text">
-                        @*<li class="nav-item">@Html.ActionLink("Wisdom", "Index", "Wisdom",new { @class="fa fa-user nav-link"})</li>*@
                         <li class="nav-item dropdown dropToggle nav-text">
                             <a class="dropdown-toggle nav-text" href="#" id="dropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Wisdom
@@ -32,38 +31,33 @@
                                 <a class="dropdown-item" href="@Url.Action("Create","Wisdom")">Create Wisdom</a>
                                 <a class="dropdown-item" href="@Url.Action("Manage","Wisdom")">Manage Your Wisdom</a>
                                 <a class="dropdown-item" href="@Url.Action("HallOfFame","Wisdom")">View Top Wisdom</a>
-                                <a class="dropdown-item" href="@Url.Action("ByUser","Wisdom")">Browse By User</a>
-                                <a class="dropdown-item" href="@Url.Action("ByAuthor","Wisdom")">Browse by Author</a>
+                                <a class="dropdown-item" href="@Url.Action("User","Wisdom")">Browse By User</a>
                             </div>
                         </li>
-                        @*<li class="nav-item">@Html.ActionLink("Authors", "Index", "Author")</li>*@
+                        &nbsp;
                         <li class="nav-item dropdown dropToggle nav-text">
                             <a class="dropdown-toggle nav-text" href="#" id="dropDownAuthor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Authors
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropDownAuthor">
-                                @* Set up  *@
-                                <a class="dropdown-item" href="@Url.Action($"HallOfFame","Author")">Top Authors</a>
-                                @* Modify author index and copy so that user can view all authors taht they have favorite wisdom with *@
+                                <a class="dropdown-item" href="@Url.Action("HallOfFame","Author")">Top Authors</a>
+                                <a class="dropdown-item" href="@Url.Action("Author","Wisdom")">Browse by Author</a>
                                 <a class="dropdown-item" href="@Url.Action("Index","Author")">All Authors</a>
                             </div>
                         </li>
-                        &nbsp;
                         &nbsp;
                         <li class="nav-item dropdown dropToggle nav-text">
                             <a class="dropdown-toggle nav-text" href="#" id="dropDownAuthor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Favorites
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropDownAuthor">
-                                @* Set up  *@
-                                <a class="dropdown-item" href="@Url.Action("WIndex","Favorite")">Favorite Wisdom</a>
-                                <a class="dropdown-item" href="@Url.Action("AIndex","Favorite")">Favorite Authors</a>
+                                <a class="dropdown-item" href="@Url.Action("Index","Favorite")">Favorite Wisdom</a>
+                                <a class="dropdown-item" href="@Url.Action("Author","Favorite")">Favorite Authors</a>
                             </div>
                         </li>
                         &nbsp;
-                        &nbsp;
+                        @Html.Partial("_LoginPartial")
                     </ul>
-                    @Html.Partial("_LoginPartial")
                 </div>
             </div>
         </div>
@@ -82,10 +76,10 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Scripts/Dynamic.js" type="text/javascript">
     </script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

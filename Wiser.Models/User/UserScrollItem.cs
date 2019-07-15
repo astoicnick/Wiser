@@ -13,5 +13,6 @@ namespace Wiser.Models.User
         public string UserId { get; set; }
         [Required]
         public string Name { get; set; }
+        public int Virtue { get; set; }
     }
 }

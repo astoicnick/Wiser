@@ -321,6 +321,12 @@
     <Content Include="Views\Shared\_ScrollAuthorModal.cshtml" />
     <Content Include="Views\Wisdom\Manage.cshtml" />
     <Content Include="Views\Shared\ScrollEditItem.cshtml" />
+    <Content Include="Views\Favorite\Author.cshtml" />
+    <Content Include="Views\Wisdom\HallOfFame.cshtml" />
+    <Content Include="Views\Wisdom\User.cshtml" />
+    <Content Include="Views\Wisdom\Author.cshtml" />
+    <Content Include="Views\Shared\UserScrollItem.cshtml" />
+    <Content Include="Views\Shared\_UserModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

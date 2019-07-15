@@ -89,22 +89,16 @@ namespace Wiser.MVC.Controllers
         [Authorize(Roles ="Admin")]
         public ActionResult Delete(string id)
         {
-            if (id == User.Identity.GetUserId())
-            {
-                return DetailNullChecker(id);
-            }
-            TempData["Unauthorized"] = "You are not authorized to use this function";
-            return RedirectToAction("Index","Wisdom");
+            return DetailNullChecker(id);
         }
         //Delete confirmed
         //POST: User/Delete/{id}
         [HttpPost]
+        [Authorize(Roles ="Admin")]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
         public ActionResult Delete(UserDetailItem userToDelete)
         {
-            if (userToDelete.UserId == User.Identity.GetUserId())
-            {
                 _userService = new UserService(User.Identity.GetUserId());
                 if (_userService.RemoveUser(userToDelete.UserId))
                 {
@@ -113,9 +107,6 @@ namespace Wiser.MVC.Controllers
                     return RedirectToAction("Index");
                 }
                 return View(userToDelete);
-            }
-            TempData["Unauthorized"] = "You are not authorized to use this function";
-            return RedirectToAction("Index", "Wisdom");
         }
         private ActionResult DetailNullChecker(string id)
         {
