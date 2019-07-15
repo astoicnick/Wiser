@@ -56,7 +56,6 @@ namespace Wiser.MVC.Controllers
             return View(authors);
         }
 
-
         //Edit general
         //GET: Author/Edit/{id}
         [Authorize(Roles ="Admin")]

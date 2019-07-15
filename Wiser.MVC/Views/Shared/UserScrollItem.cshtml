@@ -11,7 +11,7 @@
         </div>
         <div class="row contentrow">
             <div class="col-12 content">
-                <a class="content" href="@Url.Action($"Details/{u.UserId}", "User")">
+                <a class="content" href="@Url.Action($"GetByUser/{u.UserId}", "Wisdom")">
                     <h3 class="display-6 contentText">
                         @u.Name
                     </h3>
@@ -30,6 +30,4 @@
             </div>
         </div>
     </div>
-    @Html.Partial("_UserModal", u)
-
 }

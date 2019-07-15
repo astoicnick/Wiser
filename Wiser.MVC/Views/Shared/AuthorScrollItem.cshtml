@@ -11,7 +11,7 @@
         </div>
         <div class="row contentrow">
             <div class="col-12 content">
-                <a class="content" href="@Url.Action($"Details/{w.AuthorId}","Author")">
+                <a class="content" href="@Url.Action($"GetByAuthor/{w.AuthorId}","Wisdom")">
                     <h3 class="display-7 contentText">
                         @w.FirstName @w.LastName
                     </h3>
@@ -27,5 +27,5 @@
             </div>
         </div>
     </div>
-    @Html.Partial("_ScrollAuthorModal", w)
+    @*@Html.Partial("_ScrollAuthorModal", w)*@
 }

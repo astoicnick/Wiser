@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Wiser.Models.Wisdom.WisdomScrollItem>
+
+@{
+    ViewBag.Title = "GetByAuthor";
+}
+
+<h2>Wisdom by @Model.ToList()[0].ScrollAuthor.AuthorName</h2>
+
+@Html.Partial("ScrollItem", Model)

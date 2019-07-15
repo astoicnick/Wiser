@@ -90,7 +90,20 @@ namespace Wiser.MVC.Controllers
         {
             return DetailNullChecker(id);
         }
-
+        //Wisdom By User
+        //GET: Wisdom/User/{id}
+        public ActionResult GetByUser(string id)
+        {
+            _wisdomService = new WisdomService(User.Identity.GetUserId());
+            return View(_wisdomService.GetWisdomList().Where(w => w.UserId == id));
+        }
+        //Wisdom by Author
+        //GET: Wisdom/Author/{id}
+        public ActionResult GetByAuthor(int id)
+        {
+            _wisdomService = new WisdomService(User.Identity.GetUserId());
+            return View(_wisdomService.GetWisdomList().Where(w => w.ScrollAuthor.AuthorId == id).ToList());
+        }
         //Update general
         //GET: Wisdom/Update/{id}
         public ActionResult Edit(int? id)

@@ -327,6 +327,8 @@
     <Content Include="Views\Wisdom\Author.cshtml" />
     <Content Include="Views\Shared\UserScrollItem.cshtml" />
     <Content Include="Views\Shared\_UserModal.cshtml" />
+    <Content Include="Views\Wisdom\GetByUser.cshtml" />
+    <Content Include="Views\Wisdom\GetByAuthor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
