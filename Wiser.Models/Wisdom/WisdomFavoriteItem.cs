@@ -16,6 +16,8 @@ namespace Wiser.Models.Wisdom
         [Required]
         public int AuthorId { get; set; }
         [Required]
+        [Display(Name = "Author Name")]
+
         public string AuthorName { get; set; }
         [Required]
         public int WisdomId { get; set; }

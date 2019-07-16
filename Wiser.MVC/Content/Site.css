@@ -6,6 +6,11 @@
     padding-top: 0;
     align-content: center;
     text-align: center;
+    scrollbar-base-color: aliceblue;
+}
+.btn {
+    background-color: #4ea0f2;
+    color: white;
 }
 .navbar-header {
     margin: 0 auto;
@@ -23,7 +28,7 @@
 }
 .navbar-brand {
     font-family: Augustus;
-    font-size-adjust: 1.25;
+    font-size: 2.5em;
 }
 .navbar-nav{
     width: 100%;
@@ -62,7 +67,7 @@ a:hover{
 .noFavorites {
     border-radius: 25px;
     background-image: linear-gradient(to bottom, #33ccff 10%, #6666ff 100%);
-    color: navajowhite;
+    color: white;
 }
 .scrollContainer {
     padding: 5px;
@@ -115,7 +120,6 @@ a:hover{
     padding: 0px;
     margin: 0;
 }
-
 .upvoteContainer {
     height: 80%;
     padding-bottom: 0px;
@@ -126,21 +130,30 @@ a:hover{
     margin: 0 auto;
     display: block;
 }
-
 .author {
     padding-right: 30px;
     margin: 0px auto;
     padding-bottom: 0px;
     text-align: right;
 }
-
 .user {
     text-align: left;
     padding-left: 20px;
 }
-
 .authorText {
     font-style: oblique;
+}
+/*.form-horizontal{
+    display: block;
+    margin: 0 auto;
+}*/
+.form-control{
+    display: block;
+    margin: 0 auto;
+}
+.dl-horizontal {
+    display: block;
+    margin: 0 auto;
 }
 footer{
     text-align: center;

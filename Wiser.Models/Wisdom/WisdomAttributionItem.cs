@@ -16,6 +16,8 @@ namespace Wiser.Models.Wisdom
         [Required]
         public string Source { get; set; }
         [Required]
+        [Display(Name = "Created At")]
+
         public DateTime CreatedAt { get; set; }
         [UIHint("Upvoted")]
         public bool IsUpvoted { get; set; }

@@ -12,6 +12,8 @@ namespace Wiser.Models.Author
         [Key]
         public int AuthorId { get; set; }
         [Required]
+        [Display(Name = "Name")]
+
         public string AuthorName { get; set; }
         [Required]
         //How many wisdom posts that author has been attributed to (count of attributions)

@@ -37,10 +37,11 @@ namespace Wiser.MVC.Controllers
         }
         //Read general
         // GET: Author
+        [Authorize(Roles ="Admin")]
         public ActionResult Index()
         {
             _authorService = new AuthorService();
-            return View(_authorService.GetAuthors());
+            return View(_authorService.GetDetailAuthors());
         }
         //Read DetailedView
         //GET: Author/{id}

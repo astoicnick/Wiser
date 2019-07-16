@@ -16,6 +16,8 @@ namespace Wiser.Models.User
         public string Name { get; set; }
         public int? Virtue { get; set; }
         public int? VirtueToGiveToday { get; set; }
+        [Display(Name = "Created At")]
+
         public DateTime CreatedAt { get; set; }
         public List<WisdomScrollItem> Contributions { get; set; }
         public List<WisdomScrollItem> Favorites { get; set; }

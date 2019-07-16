@@ -11,6 +11,8 @@ namespace Wiser.Models.Wisdom
     public class WisdomContributionItem
     {
         [Required]
+        [Display(Name = "Created At")]
+
         public DateTime CreatedAt { get; set; }
         [Required]
         public int AuthorId { get; set; }

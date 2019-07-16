@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 @Scripts.Render("~/Content/js")
-<h1 class="display-1" style="text-align: center; font-weight: lighter;">Favorites</h1>
+<h2 class="display-4" style="text-align: center; font-weight: lighter;">Favorites</h2>
 @if (Model.Favorites.Count == 0)
 {
     <div class="jumbotron noFavorites">
@@ -15,18 +15,6 @@
     </div>
 }
 @Html.Partial("ScrollItem", Model.Favorites)
-@foreach (var w in Model.Favorites)
-{
-
-    <button class="btn btn-default unfavoriteButton" id="@w.WisdomId">Unfavorite</button>
-}
-<style>
-    .noFavorites {
-        border-radius: 25px;
-        background-image: linear-gradient(to bottom, #33ccff 10%, #6666ff 100%);
-        color: navajowhite;
-    }
-</style>
 @section scripts {
     <script language="javascript" type="text/javascript">
         console.log("Yup it's checked");

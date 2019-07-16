@@ -7,7 +7,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link href="~/fonts/augustus.ttf" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
@@ -16,7 +16,7 @@
     <div class="navbar navbar-fixed-top navGradient">
         <div class="container">
             <div class="navbar-header">
-                @Html.ActionLink("Wiser", "Index", "Home", new { area = "" }, new { @class = "h1 navbar-brand display-1" })
+                @Html.ActionLink("Wiser", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <button id="navbar-toggle" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarWrapper" aria-controls="navbarWrapper" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars fa-2x"></i>
