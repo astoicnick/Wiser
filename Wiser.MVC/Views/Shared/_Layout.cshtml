@@ -13,58 +13,60 @@
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-fixed-top navGradient">
-        <div class="container">
-            <div class="navbar-header">
-                @Html.ActionLink("Wiser", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <button id="navbar-toggle" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarWrapper" aria-controls="navbarWrapper" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa fa-bars fa-2x"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarWrapper">
-                <div class="navbar navbar-expand-xl">
-                    <ul class="nav navbar-nav nav-text">
-                        <li class="nav-item dropdown dropToggle nav-text">
-                            <a class="dropdown-toggle nav-text" href="#" id="dropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Wisdom
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropDown">
-                                <a class="dropdown-item" href="@Url.Action("Create","Wisdom")">Create Wisdom</a>
-                                <a class="dropdown-item" href="@Url.Action("Manage","Wisdom")">Manage Your Wisdom</a>
-                                <a class="dropdown-item" href="@Url.Action("HallOfFame","Wisdom")">View Top Wisdom</a>
-                                <a class="dropdown-item" href="@Url.Action("User","Wisdom")">Browse By User</a>
-                            </div>
-                        </li>
-                        &nbsp;
-                        <li class="nav-item dropdown dropToggle nav-text">
-                            <a class="dropdown-toggle nav-text" href="#" id="dropDownAuthor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Authors
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropDownAuthor">
-                                <a class="dropdown-item" href="@Url.Action("HallOfFame","Author")">Top Authors</a>
-                                <a class="dropdown-item" href="@Url.Action("Author","Wisdom")">Browse by Author</a>
-                                <a class="dropdown-item" href="@Url.Action("Index","Author")">All Authors</a>
-                            </div>
-                        </li>
-                        &nbsp;
-                        <li class="nav-item dropdown dropToggle nav-text">
-                            <a class="dropdown-toggle nav-text" href="#" id="dropDownAuthor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Favorites
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropDownAuthor">
-                                <a class="dropdown-item" href="@Url.Action("Index","Favorite")">Favorite Wisdom</a>
-                                <a class="dropdown-item" href="@Url.Action("Author","Favorite")">Favorite Authors</a>
-                            </div>
-                        </li>
-                        &nbsp;
-                        &nbsp;
-                        @Html.Partial("_LoginPartial")
-                    </ul>
+    @if (User.Identity.IsAuthenticated) { 
+        <div class="navbar navbar-fixed-top navGradient">
+            <div class="container">
+                <div class="navbar-header">
+                    @Html.ActionLink("Wiser", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <button id="navbar-toggle" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarWrapper" aria-controls="navbarWrapper" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars fa-2x"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarWrapper">
+                    <div class="navbar navbar-expand-xl">
+                        <ul class="nav navbar-nav nav-text">
+                            <li class="nav-item dropdown dropToggle nav-text">
+                                <a class="dropdown-toggle nav-text" href="#" id="dropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Wisdom
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropDown">
+                                    <a class="dropdown-item" href="@Url.Action("Create","Wisdom")">Create Wisdom</a>
+                                    <a class="dropdown-item" href="@Url.Action("Manage","Wisdom")">Manage Your Wisdom</a>
+                                    <a class="dropdown-item" href="@Url.Action("HallOfFame","Wisdom")">View Top Wisdom</a>
+                                    <a class="dropdown-item" href="@Url.Action("User","Wisdom")">Browse By User</a>
+                                </div>
+                            </li>
+                            &nbsp;
+                            <li class="nav-item dropdown dropToggle nav-text">
+                                <a class="dropdown-toggle nav-text" href="#" id="dropDownAuthor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Authors
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropDownAuthor">
+                                    <a class="dropdown-item" href="@Url.Action("HallOfFame","Author")">Top Authors</a>
+                                    <a class="dropdown-item" href="@Url.Action("Author","Wisdom")">Browse by Author</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index","Author")">All Authors</a>
+                                </div>
+                            </li>
+                            &nbsp;
+                            <li class="nav-item dropdown dropToggle nav-text">
+                                <a class="dropdown-toggle nav-text" href="#" id="dropDownAuthor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Favorites
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropDownAuthor">
+                                    <a class="dropdown-item" href="@Url.Action("Index","Favorite")">Favorite Wisdom</a>
+                                    <a class="dropdown-item" href="@Url.Action("Author","Favorite")">Favorite Authors</a>
+                                </div>
+                            </li>
+                            &nbsp;
+                            &nbsp;
+                            @Html.Partial("_LoginPartial")
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid body-content">
+        }
+    <div class="body-content">
         @RenderBody()
         <hr />
     </div>

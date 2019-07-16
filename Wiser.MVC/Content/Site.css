@@ -1,12 +1,12 @@
 ﻿body {
     font-family: 'Ubuntu', sans-serif;
-    padding-top: 50px;
-    padding-bottom: 20px;
     background-color: #e6f5ff;
-    padding-top: 0;
     align-content: center;
     text-align: center;
     scrollbar-base-color: aliceblue;
+}
+.container{
+    padding: 0px;
 }
 .btn {
     background-color: #4ea0f2;
@@ -47,8 +47,6 @@
 .body-content {
     height: 100%;
     border-radius: 40px;
-    padding-left: 15px;
-    padding-right: 15px;
 }
 a:hover{
     text-decoration: none;
@@ -57,7 +55,7 @@ a:hover{
     color: #008cff;
 }
 .navbar-fixed-top{
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
 }
 .nav-text {
     font-size: 1.15em;
@@ -143,10 +141,6 @@ a:hover{
 .authorText {
     font-style: oblique;
 }
-/*.form-horizontal{
-    display: block;
-    margin: 0 auto;
-}*/
 .form-control{
     display: block;
     margin: 0 auto;
@@ -154,6 +148,9 @@ a:hover{
 .dl-horizontal {
     display: block;
     margin: 0 auto;
+}
+.jumboHeader{
+    font-family: Augustus;
 }
 footer{
     text-align: center;
