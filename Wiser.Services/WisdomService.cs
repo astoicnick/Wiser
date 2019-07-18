@@ -55,7 +55,8 @@ namespace Wiser.Services
                     ctx.SaveChanges();
                     return true;
                 }
-                else {
+                else
+                {
                     entity.AuthorId = wisdomToCreate.AuthorId.Value;
                     entity.Author = ctx.AuthorTable.Find(entity.AuthorId);
                     entity.Author.WisdomCount += 1;
@@ -102,12 +103,12 @@ namespace Wiser.Services
             }
         }
 
-        public bool RemoveWisdom(WisdomUpdateItem wisdomToRemove)
+        public bool RemoveWisdom(int id)
         {
-            if (_userId == wisdomToRemove.UserId)
+            using (var ctx = new ApplicationDbContext())
             {
-
-                using (var ctx = new ApplicationDbContext())
+                var wisdomToRemove = ctx.WisdomTable.Find(id);
+                if (_userId == wisdomToRemove.UserId)
                 {
                     var wisdom = ctx.WisdomTable.Find(wisdomToRemove.WisdomId);
                     wisdom.User.Virtue -= wisdom.PostVirtue;
@@ -122,10 +123,9 @@ namespace Wiser.Services
                     var saveCount = ctx.SaveChanges();
                     return ctx.SaveChanges() == saveCount;
                 }
+                return false;
             }
-            else return false;
         }
-
         public WisdomDetailItem RetrieveWisdomById(int wisdomId)
         {
             using (var ctx = new ApplicationDbContext())
@@ -136,20 +136,20 @@ namespace Wiser.Services
                 return new WisdomDetailItem()
                 {
                     UserId = query.UserId,
-                        FirstName = query.User.FirstName,
-                        LastName = query.User.LastName,
-                        Author = new AuthorScrollItem
-                        {
-                            AuthorId = query.AuthorId,
-                            WisdomCount = ctx.WisdomTable.Where(a => a.AuthorId == query.AuthorId).Count(),
-                            AuthorName = query.Author.FullName
-                        },
-                        Content = query.Content,
-                        Source = query.Source,
-                        WisdomGenre = query.WisdomGenre,
-                       CreatedAt = query.CreatedAt,
-                        Virtue = query.PostVirtue,
-                        WisdomId = query.WisdomId
+                    FirstName = query.User.FirstName,
+                    LastName = query.User.LastName,
+                    Author = new AuthorScrollItem
+                    {
+                        AuthorId = query.AuthorId,
+                        WisdomCount = ctx.WisdomTable.Where(a => a.AuthorId == query.AuthorId).Count(),
+                        AuthorName = query.Author.FullName
+                    },
+                    Content = query.Content,
+                    Source = query.Source,
+                    WisdomGenre = query.WisdomGenre,
+                    CreatedAt = query.CreatedAt,
+                    Virtue = query.PostVirtue,
+                    WisdomId = query.WisdomId
                 };
             }
         }

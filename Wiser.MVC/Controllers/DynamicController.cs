@@ -82,7 +82,7 @@ namespace Wiser.MVC.Controllers
         public bool Delete(int id)
         {
             _wisdomService = new WisdomService(User.Identity.GetUserId());
-            if (_wisdomService.RemoveWisdom(_wisdomService.DetailToUpdateItem(_wisdomService.RetrieveWisdomById(id)))){
+            if (_wisdomService.RemoveWisdom(_wisdomService.DetailToUpdateItem(_wisdomService.RetrieveWisdomById(id)).WisdomId)){
                 return true;
             }
             return false;

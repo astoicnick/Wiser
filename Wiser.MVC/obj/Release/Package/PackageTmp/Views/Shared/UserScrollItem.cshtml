@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Wiser.Models.User.UserDetailItem>
+@Styles.Render("~/Content/css")
+
+@foreach (var u in Model)
+{
+    <div id="@u.UserId" class="container-fluid scrollContainer">
+        <div class="row topRow">
+            <div class="col-1 user">
+                <a href='@Url.Action($"Details/{u.UserId}", "User")' class="fa fa-user fa-2x scrollIcon" title="Check out the user who created this author!"></a>
+            </div>
+        </div>
+        <div class="row contentrow">
+            <div class="col-12 content">
+                <a class="content" href="@Url.Action($"GetByUser/{u.UserId}", "Wisdom")">
+                    <h3 class="display-6 contentText">
+                        @u.Name
+                    </h3>
+                </a>
+            </div>
+        </div>
+        <div class="row bottomRow">
+            <div class="col-5 bottomColumns">
+                Virtue - @u.Virtue
+            </div>
+            <div class="col-7 bottomColumns">
+                @{
+                    var wisdomCount = u.Contributions.Count;
+                }
+                Wisdom Count - @wisdomCount
+            </div>
+        </div>
+    </div>
+}

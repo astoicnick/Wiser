@@ -168,10 +168,11 @@ namespace Wiser.MVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
-        public ActionResult Delete(WisdomUpdateItem wisdomToRemove)
+        public ActionResult Delete(int id)
         {
             _wisdomService = new WisdomService(User.Identity.GetUserId());
-            if (_wisdomService.RemoveWisdom(wisdomToRemove))
+            var wisdomToRemove = _wisdomService.DetailToUpdateItem(_wisdomService.RetrieveWisdomById(id));
+            if (_wisdomService.RemoveWisdom(id))
             {
                 TempData["RemoveResult"] = "Wisdom Removed Successfully!";
                 return RedirectToAction("Index");

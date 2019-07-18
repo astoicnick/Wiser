@@ -10,7 +10,7 @@ namespace Wiser.Contracts
     public interface IWisdomService
     {
         bool CreateWisdom(WisdomCreateItem wisdomToCreate);
-        bool RemoveWisdom(WisdomUpdateItem wisdomToRemove);
+        bool RemoveWisdom(int id);
         WisdomDetailItem RetrieveWisdomById(int wisdomId);
         bool UpdateWisdom(WisdomUpdateItem wisdomToUpdate);
         List<WisdomScrollItem> GetWisdomList();

@@ -16,7 +16,7 @@ namespace Wiser.MVC.Controllers
             {
                 return RedirectToAction("Index", "Wisdom");
             }
-            return View(new WisdomService(User.Identity.GetUserId()).GetWisdomList()[0]);
+            return View();
         }
 
         public ActionResult About()

@@ -37,7 +37,7 @@ namespace Wiser.Services
                 });
                 ctx.SaveChanges();
                 var saveCount = ctx.SaveChanges();
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() == saveCount;
             }
         }
         public List<WisdomScrollItem> GetContributions()
@@ -187,8 +187,6 @@ namespace Wiser.Services
                     toChange.Email = userToEdit.Email;
                     toChange.FirstName = userToEdit.FirstName;
                     toChange.LastName = userToEdit.LastName;
-                    toChange.PhoneNumber = userToEdit.PhoneNumber;
-                    toChange.UserName = userToEdit.UserName;
                     return ctx.SaveChanges() == 1;
                 }
             }

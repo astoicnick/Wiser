@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Wiser.Models.Wisdom.WisdomScrollItem>
+
+@{
+    var author = Model.ToList()[0].ScrollAuthor.AuthorName;
+    ViewBag.Title = $"{author}'s Wisdom";
+}
+
+<h2>Wisdom by @author</h2>
+
+@Html.Partial("ScrollItem", Model)

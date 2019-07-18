@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Wiser.Models.User.UserDetailItem>
+
+@{
+    ViewBag.Title = "User";
+}
+<h2>Browse By User</h2>
+@Html.Partial("UserScrollItem", Model)

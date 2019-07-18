@@ -1,0 +1,59 @@
+﻿@model Wiser.Models.Wisdom.WisdomUpdateItem
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        @Html.HiddenFor(model => model.WisdomId)
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Source)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Source)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("Delete", "Wisdom", Model))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+@*new Wiser.Models.Wisdom.WisdomUpdateItem()
+    {
+        AuthorId = Model.AuthorId,
+        AuthorName = Model.AuthorName,
+        Content = Model.Content,
+        Source = Model.Source,
+        UserId = Model.UserId,
+        WisdomGenre = Model.WisdomGenre,
+        WisdomId = Model.WisdomId
+    }*@

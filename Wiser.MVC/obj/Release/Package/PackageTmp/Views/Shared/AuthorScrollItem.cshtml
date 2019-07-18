@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Wiser.Models.Author.AuthorDetailItem>
+@Styles.Render("~/Content/css")
+
+@foreach (var w in Model)
+{ 
+    <div id="@w.AuthorId" class="container-fluid scrollContainer">
+        <div class="row topRow">
+            <div class="col-1 user">
+                <a href='@Url.Action($"Details/{w.AuthorId}","Author")' class="fa fa-user fa-2x scrollIcon" title="Check out the user who created this author!"></a>
+            </div>
+        </div>
+        <div class="row contentrow">
+            <div class="col-12 content">
+                <a class="content" href="@Url.Action($"GetByAuthor/{w.AuthorId}","Wisdom")">
+                    <h3 class="display-7 contentText">
+                        @w.FirstName @w.LastName
+                    </h3>
+                </a>
+            </div>
+        </div>
+        <div class="row bottomRow">
+            <div class="col-5 bottomColumns">
+                Virtue - @w.Virtue
+            </div>
+            <div class="col-7 bottomColumns">
+                Wisdom Count - @w.WisdomCount
+            </div>
+        </div>
+    </div>
+    @*@Html.Partial("_ScrollAuthorModal", w)*@
+}
