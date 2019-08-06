@@ -19,6 +19,7 @@ namespace Wiser.Services
         {
             _userId = userId;
         }
+        public WisdomService() { }
         public bool CreateWisdom(WisdomCreateItem wisdomToCreate)
         {
             var entity =

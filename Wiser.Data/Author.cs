@@ -18,7 +18,5 @@ namespace Wiser.Data
         public DateTime CreatedAt { get; set; }
         public int Virtue { get; set; } = 0;
         public int WisdomCount { get; set; }
-
-
     }
 }

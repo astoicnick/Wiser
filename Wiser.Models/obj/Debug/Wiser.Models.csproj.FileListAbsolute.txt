@@ -33,3 +33,6 @@ C:\Users\found\source\repos\wiser\Wiser.Models\obj\Debug\Wiser.Models.csproj.Cor
 C:\Users\found\source\repos\wiser\Wiser.Models\obj\Debug\Wiser.Models.csproj.CopyComplete
 C:\Users\found\source\repos\wiser\Wiser.Models\obj\Debug\Wiser.Models.dll
 C:\Users\found\source\repos\wiser\Wiser.Models\obj\Debug\Wiser.Models.pdb
+C:\Users\nick\Source\Repos\Wiser\Wiser.Models\bin\Debug\Wiser.Data.dll
+C:\Users\nick\Source\Repos\Wiser\Wiser.Models\bin\Debug\Wiser.Data.pdb
+C:\Users\nick\Source\Repos\Wiser\Wiser.Models\bin\Debug\Wiser.Data.dll.config

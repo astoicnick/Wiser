@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201907111507400_authorcreatedatnowincreateauthormethod.Designer.cs">
       <DependentUpon>201907111507400_authorcreatedatnowincreateauthormethod.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908061544009_test.cs" />
+    <Compile Include="Migrations\201908061544009_test.Designer.cs">
+      <DependentUpon>201908061544009_test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Upvoted.cs" />
     <Compile Include="Favorite.cs" />
     <Compile Include="IdentityModels.cs" />
@@ -256,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907111507400_authorcreatedatnowincreateauthormethod.resx">
       <DependentUpon>201907111507400_authorcreatedatnowincreateauthormethod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908061544009_test.resx">
+      <DependentUpon>201908061544009_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

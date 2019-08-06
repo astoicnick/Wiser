@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiser.Models", "Wiser.Model
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiser.WebAPI", "Wiser.WebAPI\Wiser.WebAPI.csproj", "{0315970C-920C-4004-B893-537A0D236645}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiser.WF", "Wiser.WF\Wiser.WF.csproj", "{9C198B7F-94E9-42D3-9D4C-9A6DA95EC78F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{0315970C-920C-4004-B893-537A0D236645}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0315970C-920C-4004-B893-537A0D236645}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0315970C-920C-4004-B893-537A0D236645}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C198B7F-94E9-42D3-9D4C-9A6DA95EC78F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C198B7F-94E9-42D3-9D4C-9A6DA95EC78F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C198B7F-94E9-42D3-9D4C-9A6DA95EC78F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C198B7F-94E9-42D3-9D4C-9A6DA95EC78F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
