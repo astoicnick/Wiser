@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wiser.Contracts;
 using Wiser.Data;
 using Wiser.Models;
 using Wiser.Models.Author;
@@ -11,7 +10,7 @@ using Wiser.Models.Wisdom;
 
 namespace Wiser.Services
 {
-    public class AuthorService : IAuthorService
+    public class AuthorService
     {
         public bool CreateAuthor(AuthorCreateItem authorToCreate)
         {
